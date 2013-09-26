@@ -19,6 +19,9 @@ public class AssertUtils {
     private static final String GET_PREFIX = "get";
     private static final String RANDOM_PREFIX = "next";
 
+    /** Should not be initialized. */
+    private AssertUtils() {}
+
     public static void testProperties(Object o, Random random) {
         Class<?> objectClass = o.getClass();
         for (Method setMethod : objectClass.getMethods()) {
