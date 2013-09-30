@@ -6,6 +6,8 @@ import static org.junit.Assert.fail;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -17,10 +19,24 @@ public class AssertUtils {
 
     private static final String SET_PREFIX = "set";
     private static final String GET_PREFIX = "get";
+    private static final String BOOLEAN_GET_PREFIX = "is";
     private static final String RANDOM_PREFIX = "next";
 
+    /** Hack to map between primitive types and boxing classes */
+    private static final Map<Class<?>, Class<?>> primitiveToBoxing = new HashMap<>();
+    static {
+        primitiveToBoxing.put(Boolean.TYPE, Boolean.class);
+        primitiveToBoxing.put(Byte.TYPE, Byte.class);
+        primitiveToBoxing.put(Short.TYPE, Short.class);
+        primitiveToBoxing.put(Integer.TYPE, Integer.class);
+        primitiveToBoxing.put(Long.TYPE, Long.class);
+        primitiveToBoxing.put(Float.TYPE, Float.class);
+        primitiveToBoxing.put(Double.TYPE, Double.class);
+    }
+
     /** Should not be initialized. */
-    private AssertUtils() {}
+    private AssertUtils() {
+    }
 
     public static void testProperties(Object o, Random random) {
         Class<?> objectClass = o.getClass();
@@ -38,11 +54,10 @@ public class AssertUtils {
             }
 
             String propertyName = setMethodName.substring(SET_PREFIX.length());
-            Method getMethod = getGetMethod(objectClass, propertyName);
-
             Class<?> type = paramTypes[0];
-            if (!type.equals(getMethod.getReturnType())) {
-                log.info("Getter and setter for " + propertyName + " do not match types.");
+            Method getMethod = getGetMethod(objectClass, propertyName, type);
+            if (getMethod == null) {
+                log.info("Cannot find getter and setter pair for property " + propertyName);
                 continue;
             }
             
@@ -62,16 +77,32 @@ public class AssertUtils {
         }
     }
 
-    private static Method getGetMethod(Class<?> objectClass, String propertyName) {
-        String getMethodName = GET_PREFIX + propertyName;
+    private static Method getGetMethod(Class<?> objectClass, String propertyName, Class<?> expectedType) {
+        Method m = getGetMethod(objectClass, propertyName, GET_PREFIX, expectedType);
+        if (m == null && (expectedType.equals(Boolean.TYPE) || expectedType.equals(Boolean.class))) {
+            log.info("Property " + propertyName + " is a boolean, trying a different prefix");
+            m = getGetMethod(objectClass, propertyName, BOOLEAN_GET_PREFIX, expectedType);
+        }
+        return m;
+    }
+
+    private static Method getGetMethod(Class<?> objectClass,
+            String propertyName,
+            String methodPrefix,
+            Class<?> expectedType) {
+        String getMethodName = methodPrefix + propertyName;
         Method getMethod;
         try {
             getMethod = objectClass.getMethod(getMethodName);
             if (!getMethod.isAccessible() && !Modifier.isPublic(getMethod.getModifiers())) {
                 throw new NoSuchMethodException();
             }
+            Class<?> retrunType = getMethod.getReturnType();
+            if (!retrunType.equals(expectedType)) {
+                throw new NoSuchMethodException();
+            }
         } catch (NoSuchMethodException e) {
-            log.info("No appropriate getter for " + propertyName);
+            log.info("No appropriate getter " + getMethodName + " for " + propertyName);
             return null;
         }
         return getMethod;
@@ -82,7 +113,9 @@ public class AssertUtils {
         Class<? extends Random> randomClass = random.getClass();
         try {
             Method randomMethod = randomClass.getMethod(randomMethodName);
-            if (!randomMethod.getReturnType().equals(type) || randomMethod.getParameterTypes().length != 0) {
+            Class<?> returnType = randomMethod.getReturnType();
+            if (randomMethod.getParameterTypes().length != 0 ||
+                    (!returnType.equals(type) && !type.equals(primitiveToBoxing.get(returnType)))) {
                 throw new NoSuchMethodException();
             }
 

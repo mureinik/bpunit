@@ -19,5 +19,7 @@ public class AssertUtilsTest {
         assertNotNull("myInt not checked", sc.getMyInt());
         assertNotNull("myLong not checked", sc.getMyDate());
         assertNotNull("myString not checked", sc.getMyString());
+        assertNotNull("someBoolean not checked", sc.getSomeBoolean());
+        assertNotNull("someOtherBoolean not checked", sc.isSomeOtherBoolean());
     }
 }
