@@ -17,7 +17,7 @@ import java.util.Random;
  * @see java.util.Random
  */
 @SuppressWarnings("serial")
-public final class SeedableRandom extends Random {
+public class SeedableRandom extends Random {
 
     /* --- Class constants --- */
 

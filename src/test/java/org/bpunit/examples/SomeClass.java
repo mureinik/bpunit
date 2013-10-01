@@ -12,6 +12,7 @@ public class SomeClass {
     private Boolean someBoolean;
     private Boolean someOtherBoolean;
     private double myPrimitiveDouble = Double.NaN;
+    private Object myObject;
 
     public String getMyString() {
         return myString;
@@ -59,5 +60,13 @@ public class SomeClass {
 
     public void setMyPrimitiveDouble(double myPrimitiveDouble) {
         this.myPrimitiveDouble = myPrimitiveDouble;
+    }
+
+    public Object getMyObject() {
+        return myObject;
+    }
+
+    public void setMyObject(Object myObject) {
+        this.myObject = myObject;
     }
 }
