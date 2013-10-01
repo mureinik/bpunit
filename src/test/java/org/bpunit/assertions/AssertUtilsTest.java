@@ -1,5 +1,6 @@
 package org.bpunit.assertions;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import org.bpunit.examples.SomeClass;
@@ -21,5 +22,6 @@ public class AssertUtilsTest {
         assertNotNull("myString not checked", sc.getMyString());
         assertNotNull("someBoolean not checked", sc.getSomeBoolean());
         assertNotNull("someOtherBoolean not checked", sc.isSomeOtherBoolean());
+        assertFalse("primitiveDouble not checked", "NaN".equals(String.valueOf(sc.getMyPrimitiveDouble())));
     }
 }

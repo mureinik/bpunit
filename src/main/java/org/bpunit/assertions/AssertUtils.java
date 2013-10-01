@@ -109,7 +109,11 @@ public class AssertUtils {
     }
 
     private static <T> T getRandomValue(Random random, Class<T> type) {
-        String randomMethodName = RANDOM_PREFIX + type.getSimpleName();
+        String typeName = type.getSimpleName();
+        if (type.isPrimitive()) {
+            typeName = capitalizeFirst(typeName);
+        }
+        String randomMethodName = RANDOM_PREFIX + typeName;
         Class<? extends Random> randomClass = random.getClass();
         try {
             Method randomMethod = randomClass.getMethod(randomMethodName);
@@ -125,5 +129,9 @@ public class AssertUtils {
             log.info("Can't execute random method: " + randomClass.getSimpleName() + "." + randomMethodName);
             return null;
         }
+    }
+
+    private static String capitalizeFirst(String s) {
+        return String.valueOf(Character.toTitleCase(s.charAt(0))) + s.substring(1);
     }
 }
