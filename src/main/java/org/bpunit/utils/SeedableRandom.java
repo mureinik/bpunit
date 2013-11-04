@@ -48,13 +48,11 @@ public class SeedableRandom extends Random {
     /* --- Constructor --- */
 
     /**
-     * Private constructor so that only we can instantiate the instance.
+     * Constructor from the seed.
      */
     public SeedableRandom(long seed) {
         setSeed(seed);
     }
-
-    /* --- Singleton-related Methods --- */
 
     /* --- Seed-related Methods --- */
 
