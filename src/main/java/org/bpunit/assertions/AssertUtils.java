@@ -15,8 +15,10 @@ import java.util.logging.Logger;
  * A utility class for boilerplate assertions
  */
 public class AssertUtils {
+    /** The logger to use. */
     private static final Logger log = Logger.getLogger(AssertUtils.class.getName());
 
+    // Prefixes to make up method names
     private static final String SET_PREFIX = "set";
     private static final String GET_PREFIX = "get";
     private static final String BOOLEAN_GET_PREFIX = "is";
@@ -38,6 +40,21 @@ public class AssertUtils {
     private AssertUtils() {
     }
 
+    /**
+     * Tests that the <code>getXYZ()</code> and <code>setXYZ(SomeType XYZ)</code> methods of <code>o</code> are
+     * symmetric. I.e., If <code>setXYZ</code> is called with some randomly generated value, the subsequent
+     * <code>getXYZ</code> will return the same value.
+     *
+     * This behavior is tested by calling {@link org.junit.Assert}'s assertions, so a failure would behave just like any
+     * other JUnit test failure.
+     *
+     * @param o
+     *            The object to test.
+     * @param random
+     *            An instance of {@link Random} used to randomize values for <code>o</code>'s properties.
+     *            <code>random</code> should have a public method called <code>nextXYZ()</code> which takes no arguments
+     *            and returns an instance of <code>XYZ</code> for each type of property <code>o</code> has.
+     */
     public static void testProperties(Object o, Random random) {
         Class<?> objectClass = o.getClass();
         for (Method setMethod : objectClass.getMethods()) {
@@ -60,23 +77,31 @@ public class AssertUtils {
                 log.info("Cannot find getter and setter pair for property " + propertyName);
                 continue;
             }
-            
+
             Object randomValue = getRandomValue(random, type);
             if (randomValue == null) {
                 continue;
             }
-
 
             try {
                 setMethod.invoke(o, randomValue);
                 Object returnedValue = getMethod.invoke(o);
                 assertEquals("Wrong value for property " + propertyName, randomValue, returnedValue);
             } catch (IllegalAccessException | InvocationTargetException e) {
-                fail("Can't test property " + propertyName + " due to exception: " + e);                
+                fail("Can't test property " + propertyName + " due to exception: " + e);
             }
         }
     }
 
+    /**
+     * @param objectClass
+     *            The class of object to get the method for.
+     * @param propertyName
+     *            The name of the property.
+     * @param expectedType
+     *            The expected return type.
+     * @return A {@link Method} object representing the "get method" of the given property name.
+     */
     private static Method getGetMethod(Class<?> objectClass, String propertyName, Class<?> expectedType) {
         Method m = getGetMethod(objectClass, propertyName, GET_PREFIX, expectedType);
         if (m == null && (expectedType.equals(Boolean.TYPE) || expectedType.equals(Boolean.class))) {
@@ -86,6 +111,17 @@ public class AssertUtils {
         return m;
     }
 
+    /**
+     * @param objectClass
+     *            The class of object to get the method for.
+     * @param propertyName
+     *            The name of the property.
+     * @param methodPrefix
+     *            The prefix of the method to which the property name is appended to (e.g., "get", "is").
+     * @param expectedType
+     *            The expected return type.
+     * @return A {@link Method} object representing the "get method" of the given property name.
+     */
     private static Method getGetMethod(Class<?> objectClass,
             String propertyName,
             String methodPrefix,
@@ -108,6 +144,13 @@ public class AssertUtils {
         return getMethod;
     }
 
+    /**
+     * @param random
+     *            The random generator to use.
+     * @param type
+     *            The type to randomize.
+     * @return A randomly generated value of type <code>type</code>.
+     */
     private static <T> T getRandomValue(Random random, Class<T> type) {
         String typeName = type.getSimpleName();
         if (type.isPrimitive()) {
@@ -123,7 +166,7 @@ public class AssertUtils {
                 throw new NoSuchMethodException();
             }
 
-            //noinspection unchecked
+            // noinspection unchecked
             return (T) randomMethod.invoke(random);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             log.info("Can't execute random method: " + randomClass.getSimpleName() + "." + randomMethodName);
@@ -131,6 +174,13 @@ public class AssertUtils {
         }
     }
 
+    /**
+     * Transforms a string to title case.
+     * 
+     * @param s
+     *            The string to transform.
+     * @return The transformed string.
+     */
     private static String capitalizeFirst(String s) {
         return String.valueOf(Character.toTitleCase(s.charAt(0))) + s.substring(1);
     }
