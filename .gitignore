@@ -5,3 +5,8 @@ target/
 .idea
 *.ipr
 *.iml
+
+# Eclipse
+.settings
+.project
+.classpath
