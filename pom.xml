@@ -8,6 +8,12 @@
     <artifactId>bpunit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <scm>
+        <connection>scm:git:git://github.com/mureinik/bpunit.git</connection>
+        <developerConnection>scm:git:git@github.com:mureinik/bpunit.git</developerConnection>
+        <url>http://github.com/mureinik/bpunit</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
