@@ -4,6 +4,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- General project information -->
+    <name>BPUnit</name>
+    <description>Boilerplate Utilities for JUnit</description>
+    <url>http://github.com/mureinik/bpunit</url>
+    <licenses>
+      <license>
+          <name>GNU General Public License</name>
+          <url>http://www.gnu.org/copyleft/gpl.html</url>
+          <distribution>repo</distribution>
+      </license>
+    </licenses>
+
+    <developers>
+      <developer>
+        <id>mureinik</id>
+        <name>Allon Mureinik</name>
+        <email>mureinik@gmail.com</email>
+        <url>http://il.linkedin.com/in/mureinik/</url>
+        <timezone>+2</timezone>
+      </developer>
+    </developers>
+
+    <!-- Technical/functional definitions -->
     <groupId>bpunit</groupId>
     <artifactId>bpunit</artifactId>
     <version>1.0-SNAPSHOT</version>
