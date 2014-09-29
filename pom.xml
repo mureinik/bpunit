@@ -27,7 +27,7 @@
     </developers>
 
     <!-- Technical/functional definitions -->
-    <groupId>bpunit</groupId>
+    <groupId>com.github.mureinik</groupId>
     <artifactId>bpunit</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
