@@ -48,12 +48,32 @@ public class SeedableRandom extends Random {
     /** The {@link Charset} to use when converting byte[] to {@link String} */
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
+    /** The default seed to use with {@link #SeedableRandom()} */
+    private static final long DEFAULT_SEED = 19811611;
+
     /* --- Class Fields --- */
 
     /** The seed that was last set. */
     private long seed;
 
-    /* --- Constructor --- */
+    /* --- Constructors --- */
+
+    /**
+     * Default constructor.
+     *
+     * If the <code>BPUNIT.SEED</code> environment variable is set, it would be used as the seed.
+     * If it is not, {@link #DEFAULT_SEED} will be used;
+     *
+     * @throws NumberFormatException if <code>BPUNIT.SEED</code> is set to a value that cannot be parsed to a long.
+     */
+    public SeedableRandom() {
+        long seed = DEFAULT_SEED;
+        String envSeed = System.getProperty("BPUNIT.SEED");
+        if (envSeed != null) {
+            seed = Long.parseLong(envSeed);
+        }
+        setSeed(seed);
+    }
 
     /**
      * Constructor from the seed.
