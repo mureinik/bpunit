@@ -54,3 +54,15 @@ seed can be specified from the code by using `SeedableRandom(long)` or
 externally by using the default constructor `SeedableRandom()` and seting the
 `BPUNIT.SEED` environment variable.  In any event, the seed will be logged so
 that it can be re-injected in case a test fails.
+
+
+### Maintaining BPUnit
+
+The general philosophy behind BPUnit is that it should be as lightweight and as
+non-intrusive as possible.  Under this philosophy, BPUnit should not depend on
+any other external libraries (except for [JUnit](http://junit.org/), of
+course). This is why `SeedableRandom` re-implements several methods present in
+[Apache Commons Lang](http://commons.apache.org/proper/commons-lang/), and why
+`AssertUtils` does not use [Apache Commons
+BeanUtils](http://commons.apache.org/proper/commons-beanutils/) or anything of
+the sort.
