@@ -17,3 +17,28 @@ often than not, these are the places that contain the bugs.
 
 BPUnit attempts to fill this gap by offering a set of utilities to make testing
 even these boring parts of the code as pain free as possible.
+
+### Using BPUnit
+
+#### The Basics: `AssertUtils`
+
+Calling `AssertUtils.testProperties(Object)` is the most basic way to use
+BPUnit. It will iterate over all of the object's parameters, `set` each one
+with a random value, `get` it back, and compare the two.  If any of these
+properties don't match, the test will fail. Missing properties will generate an
+info log, but will not fail the test.
+
+#### The Basics: Using a different `Random`
+
+`AssertUtils.testProperties(Object)` uses
+[`java.util.Random`](http://docs.oracle.com/javase/7/docs/api/java/util/Random.html)
+which is a neat little randomizer, but it can only randomize the JDK's types,
+but the classes you'd want to test usually have properties from your own
+classes.  `AssertUtils.testProperties(Object, Random)` allows you extend
+`java.util.Random` and provide methods to randomize your own classes. A
+randomizer for `MyClass` is a method with the following properties:
+  
+  1. It's public.  
+  2. It's return type is `MyClass`.  
+  3. It's called `nextMyClass`.  
+  4. It doesn't have any arguments.
