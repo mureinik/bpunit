@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  * <code>SeedableRandom</code> is a random generator with more powerful random generating methods, based on work done on
@@ -19,6 +20,9 @@ import java.util.Random;
  */
 @SuppressWarnings("serial")
 public class SeedableRandom extends Random {
+
+    /** The logger to use. */
+    private static final Logger log = Logger.getLogger(SeedableRandom.class.getName());
 
     /* --- Class constants --- */
 
@@ -70,6 +74,7 @@ public class SeedableRandom extends Random {
     public void setSeed(long seed) {
         super.setSeed(seed);
         this.seed = seed;
+        log.info (getClass() + " using seed: " + seed);
     }
 
     /**
