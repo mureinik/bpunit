@@ -1,7 +1,7 @@
 package org.bpunit.utils;
 
 import java.math.BigInteger;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -44,9 +44,6 @@ public class SeedableRandom extends Random {
     /** The legal characters for an entity name. */
     private static final char[] LEGAL_PROPERTY_CHARS =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_".toCharArray();
-
-    /** The {@link Charset} to use when converting byte[] to {@link String} */
-    private static final Charset UTF8 = Charset.forName("UTF-8");
 
     /** The default seed to use with {@link #SeedableRandom()} */
     private static final long DEFAULT_SEED = 19811611;
@@ -342,10 +339,10 @@ public class SeedableRandom extends Random {
                         LAST_PRINTABLE_CHAR);
             }
 
-            return new String(data, UTF8);
+            return new String(data, StandardCharsets.UTF_8);
 
         }
-        return new String(nextBytes(length), UTF8);
+        return new String(nextBytes(length), StandardCharsets.UTF_8);
     }
 
     /**
@@ -373,7 +370,7 @@ public class SeedableRandom extends Random {
                     LAST_XML_PRINTABLE_CHAR);
         }
 
-        return new String(data, UTF8);
+        return new String(data, StandardCharsets.UTF_8);
     }
 
     /**
