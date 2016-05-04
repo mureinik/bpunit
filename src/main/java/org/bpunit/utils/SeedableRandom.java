@@ -10,10 +10,10 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 /**
- * <code>SeedableRandom</code> is a random generator with more powerful random generating methods, based on work done on
- * the <code>org.ovirt.engine.core.utils.RandomUtils</code> class in the oVirt Engine project.
+ * {@code SeedableRandom} is a random generator with more powerful random generating methods, based on work done on
+ * the {@code org.ovirt.engine.core.utils.RandomUtils} class in the oVirt Engine project.
  * 
- * Several random string generation methods were inspired from <code>org.apache.commons.lang.RandomStringUtils</code>,
+ * Several random string generation methods were inspired from {@code org.apache.commons.lang.RandomStringUtils},
  * although greatly simplified
  * 
  * @see java.util.Random
@@ -58,10 +58,10 @@ public class SeedableRandom extends Random {
     /**
      * Default constructor.
      *
-     * If the <code>BPUNIT.SEED</code> environment variable is set, it would be used as the seed.
+     * If the {@code BPUNIT.SEED} environment variable is set, it would be used as the seed.
      * If it is not, {@link #DEFAULT_SEED} will be used;
      *
-     * @throws NumberFormatException if <code>BPUNIT.SEED</code> is set to a value that cannot be parsed to a long.
+     * @throws NumberFormatException if {@code BPUNIT.SEED} is set to a value that cannot be parsed to a {@code long}.
      */
     public SeedableRandom() {
         long seed = DEFAULT_SEED;
@@ -297,7 +297,7 @@ public class SeedableRandom extends Random {
     /* --- Collections-related Methods --- */
 
     /**
-     * Picks a random element from the given <code>Collection</code>.
+     * Picks a random element from the given {@link Collection}.
      */
     public <T> T pickRandom(Collection<T> c) {
         int elementIndex = super.nextInt(c.size());
@@ -322,7 +322,7 @@ public class SeedableRandom extends Random {
     /* --- String-related Methods --- */
 
     /**
-     * Randomize a <code>String</code>.
+     * Randomize a {@link String}.
      * 
      * @param length
      *            The requested length of the string.
@@ -384,14 +384,14 @@ public class SeedableRandom extends Random {
     }
 
     /**
-     * Randomize a printable <code>String</code>.
+     * Randomize a printable {@link String}.
      */
     public String nextString() {
         return nextString(10, true);
     }
 
     /**
-     * Randomize a printable <code>String</code>.
+     * Randomize a printable {@link String}.
      * 
      * @param length
      *            The requested length of the string.
@@ -401,7 +401,7 @@ public class SeedableRandom extends Random {
     }
 
     /**
-     * Randomize a <code>String</code> made up of the given characters
+     * Randomize a {@link String} made up of the given characters
      * 
      * @param length
      *            The requested length of the string.
@@ -429,7 +429,7 @@ public class SeedableRandom extends Random {
     }
 
     /**
-     * Randomize a <code>String</code> of a length in the given range [min, max].
+     * Randomize a {@link String} of a length in the given range [min, max].
      * 
      * @param printable
      *            Whether or not, the string should contain only printable characters.
@@ -439,7 +439,7 @@ public class SeedableRandom extends Random {
     }
 
     /**
-     * Randomize a printable <code>String</code> of a length in the given range [min, max].
+     * Randomize a printable {@link String} of a length in the given range [min, max].
      */
     public String nextString(int min, int max) {
         return nextString(nextInt(min, max), true);
