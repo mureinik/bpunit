@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Random;
 
 import org.bpunit.examples.SomeClass;
+import org.bpunit.examples.SomeClassWithThrowingSetter;
 import org.bpunit.utils.SeedableRandom;
 import org.junit.Test;
 
@@ -37,6 +38,11 @@ public class AssertUtilsTest {
     @Test
     public void testPrivateRandomizer() {
         assentSimpleClass(new ObjectRandom(), true);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testThrowingSetter() {
+        AssertUtils.testProperties(new SomeClassWithThrowingSetter());
     }
 
     private static void assentSimpleClass(Random random, boolean canRandomizeObject) {
