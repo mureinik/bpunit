@@ -75,4 +75,7 @@ public class SomeClass {
     public void setSomethingBad(int i, int j) {
         Assert.fail("setSomethingBad should fail as it has two arguments");
     }
+
+    public void setWithoutGetter(int ignore) {
+    }
 }
