@@ -1,5 +1,7 @@
 package org.bpunit.examples;
 
+import org.junit.Assert;
+
 import java.util.Date;
 
 /**
@@ -68,5 +70,9 @@ public class SomeClass {
 
     public void setMyObject(Object myObject) {
         this.myObject = myObject;
+    }
+
+    public void setSomethingBad(int i, int j) {
+        Assert.fail("setSomethingBad should fail as it has two arguments");
     }
 }
