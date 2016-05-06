@@ -78,4 +78,11 @@ public class SomeClass {
 
     public void setWithoutGetter(int ignore) {
     }
+
+    public void setWithWrongType(int ignore) {
+    }
+
+    public String getWithWrongType() {
+        return null;
+    }
 }
