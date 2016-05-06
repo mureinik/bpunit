@@ -42,9 +42,9 @@ public class AssertUtils {
     }
 
     /**
-     * Tests that the <code>getXYZ()</code> and <code>setXYZ(SomeType XYZ)</code> methods of <code>o</code> are
-     * symmetric. I.e., If <code>setXYZ</code> is called with some randomly generated value, the subsequent
-     * <code>getXYZ</code> will return the same value.
+     * Tests that the {@code getXYZ()} and {@code setXYZ(SomeType XYZ)} methods of {@code o} are symmetric. I.e., If
+     * {@code setXYZ} is called with some randomly generated value, the subsequent {@code getXYZ} will return the same
+     * value.
      *
      * This behavior is tested by calling {@link org.junit.Assert}'s assertions, so a failure would behave just like any
      * other JUnit test failure.
@@ -59,9 +59,9 @@ public class AssertUtils {
     }
 
     /**
-     * Tests that the <code>getXYZ()</code> and <code>setXYZ(SomeType XYZ)</code> methods of <code>o</code> are
-     * symmetric. I.e., If <code>setXYZ</code> is called with some randomly generated value, the subsequent
-     * <code>getXYZ</code> will return the same value.
+     * Tests that the {@code getXYZ()} and {@code setXYZ(SomeType XYZ)} methods of {@code o} are symmetric. I.e., If
+     * {@code setXYZ} is called with some randomly generated value, the subsequent {@code getXYZ} will return the same
+     * value.
      *
      * This behavior is tested by calling {@link org.junit.Assert}'s assertions, so a failure would behave just like any
      * other JUnit test failure.
@@ -69,9 +69,9 @@ public class AssertUtils {
      * @param o
      *            The object to test.
      * @param random
-     *            An instance of {@link Random} used to randomize values for <code>o</code>'s properties.
-     *            <code>random</code> should have a public method called <code>nextXYZ()</code> which takes no arguments
-     *            and returns an instance of <code>XYZ</code> for each type of property <code>o</code> has.
+     *            An instance of {@link Random} used to randomize values for {@code o}'s properties.
+     *            {@code random} should have a public method called {@code nextXYZ()} which takes no arguments and
+     *            returns an instance of {@code XYZ} for each type of property {@code o} has.
      */
     public static void testProperties(Object o, Random random) {
         Class<?> objectClass = o.getClass();
@@ -167,7 +167,7 @@ public class AssertUtils {
      *            The random generator to use.
      * @param type
      *            The type to randomize.
-     * @return A randomly generated value of type <code>type</code>.
+     * @return A randomly generated value of type {@code type}.
      */
     private static <T> T getRandomValue(Random random, Class<T> type) {
         String typeName = type.getSimpleName();
