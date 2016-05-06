@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.bpunit.examples.SomeClass;
@@ -22,6 +23,11 @@ public class AssertUtilsTest {
 
         public Object nextObject() {
             return new Object();
+        }
+
+        /** Intentionally misleading name */
+        public Date nextSimpleDateFormat() {
+            return new Date();
         }
     }
 

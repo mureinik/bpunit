@@ -2,6 +2,7 @@ package org.bpunit.examples;
 
 import org.junit.Assert;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -15,6 +16,7 @@ public class SomeClass {
     private Boolean someOtherBoolean;
     private double myPrimitiveDouble = Double.NaN;
     private Object myObject;
+    private SimpleDateFormat mySimpleDateFormat;
 
     public String getMyString() {
         return myString;
@@ -70,6 +72,14 @@ public class SomeClass {
 
     public void setMyObject(Object myObject) {
         this.myObject = myObject;
+    }
+
+    public SimpleDateFormat getMySimpleDateFormat() {
+        return mySimpleDateFormat;
+    }
+
+    public void setMySimpleDateFormat(SimpleDateFormat mySimpleDateFormat) {
+        this.mySimpleDateFormat = mySimpleDateFormat;
     }
 
     public void setSomethingBad(int i, int j) {
