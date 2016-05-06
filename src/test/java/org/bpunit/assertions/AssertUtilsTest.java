@@ -25,6 +25,11 @@ public class AssertUtilsTest {
     }
 
     @Test
+    public void testDefaultRandom() {
+        assentSimpleClass(null, false);
+    }
+
+    @Test
     public void testSeedableRandom() {
         assentSimpleClass(new SeedableRandom(System.currentTimeMillis()), false);
     }
@@ -36,7 +41,11 @@ public class AssertUtilsTest {
 
     private static void assentSimpleClass(Random random, boolean canRandomizeObject) {
         SomeClass sc = new SomeClass();
-        AssertUtils.testProperties(sc, random);
+        if (random != null) {
+            AssertUtils.testProperties(sc, random);
+        } else {
+            AssertUtils.testProperties(sc);
+        }
 
         // Make sure all properties were addressed
         assertNotNull("myInt not checked", sc.getMyInt());
