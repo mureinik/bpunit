@@ -148,9 +148,6 @@ public class AssertUtils {
         Method getMethod;
         try {
             getMethod = objectClass.getMethod(getMethodName);
-            if (!getMethod.isAccessible() && !Modifier.isPublic(getMethod.getModifiers())) {
-                throw new NoSuchMethodException();
-            }
             Class<?> retrunType = getMethod.getReturnType();
             if (!retrunType.equals(expectedType)) {
                 throw new NoSuchMethodException();
