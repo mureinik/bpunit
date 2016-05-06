@@ -25,7 +25,7 @@ public class AssertUtilsTest {
     }
 
     @Test
-    public void testSimpleClass() {
+    public void testSeedableRandom() {
         assentSimpleClass(new SeedableRandom(System.currentTimeMillis()), false);
     }
 
