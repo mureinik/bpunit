@@ -30,17 +30,17 @@ info log, but will not fail the test.
 
 #### The Basics: Using a different `Random`
 
-`AssertUtils.testProperties(Object)` uses
-[`java.util.Random`](http://docs.oracle.com/javase/7/docs/api/java/util/Random.html)
-which is a neat little randomizer, but it can only randomize the JDK's types,
-but the classes you'd want to test usually have properties from your own
-classes.  `AssertUtils.testProperties(Object, Random)` allows you extend
+While [`java.util.Random`](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+is a neat little randomizer, it has several drawbacks. First and foremost, it 
+can only randomize a small subset of the JDK's types, wheres the classes you'd
+want to test usually have properties from your own classes.  
+`AssertUtils.testProperties(Object, Random)` allows you extend
 `java.util.Random` and provide methods to randomize your own classes. A
 randomizer for `MyClass` is a method with the following properties:
   
   1. It's public.  
-  2. It's return type is `MyClass`.  
-  3. It's called `nextMyClass`.  
+  2. Its return type is `MyClass`.  
+  3. Its called `nextMyClass`.  
   4. It doesn't have any arguments.
 
 #### The Basics: Reproducible tests
