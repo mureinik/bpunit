@@ -51,7 +51,7 @@ Fortunately, since Java can only really guarantee a pseudo-random number, even
 these so called "random" numbers can be generated in a predictable way by
 controlling the seed. This is where `SeedableRandom` comes in to play. It's
 seed can be specified from the code by using `SeedableRandom(long)` or
-externally by using the default constructor `SeedableRandom()` and seting the
+externally by using the default constructor `SeedableRandom()` and setting the
 `BPUNIT.SEED` environment variable.  In any event, the seed will be logged so
 that it can be re-injected in case a test fails.
 
