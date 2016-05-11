@@ -7,7 +7,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@code SeedableRandom} is a random generator with more powerful random generating methods, based on work done on
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 public class SeedableRandom extends Random {
 
     /** The logger to use. */
-    private static final Logger log = Logger.getLogger(SeedableRandom.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(SeedableRandom.class.getName());
 
     /* --- Class constants --- */
 

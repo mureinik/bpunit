@@ -65,4 +65,20 @@ course). This is why `SeedableRandom` re-implements several methods present in
 [Apache Commons Lang](http://commons.apache.org/proper/commons-lang/), and why
 `AssertUtils` does not use [Apache Commons
 BeanUtils](http://commons.apache.org/proper/commons-beanutils/) or anything of
-the sort.
+the sort. However, it's pretty hard to keep the dependency list completely
+empty and some were introduced:
+
+  1. [SLF4J](http://www.slf4j.org/) is used to hide the logging implementation
+     details. This is done to allow other projects using BPUnit to easily
+     integrate its logging with theirs by dropping in the appropriate adapter
+     and supplying it with the proper configuration.
+     BPUnit's tests run using the
+     [simple implementation](http://www.slf4j.org/api/org/slf4j/impl/SimpleLogger.html)
+     in order to eliminate the need for an additional 3rd party jar but the
+     "production" code is not aware of this fact, and, as noted, it can easily
+     be replaced.
+      BPUnit uses the `slf4j-api` and `slf4j-simple` libraries from the 1.7.21
+      release in order to incorporate bug fixes and implementation improvements.
+      However, note that it only uses trivial syntax, and would be binary
+      compatible with any slf4j binary from the 1.7.x generation, if not
+      earlier.

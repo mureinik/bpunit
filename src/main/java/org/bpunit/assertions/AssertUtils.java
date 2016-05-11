@@ -8,7 +8,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.bpunit.utils.SeedableRandom;
 
 /**
@@ -16,7 +17,7 @@ import org.bpunit.utils.SeedableRandom;
  */
 public class AssertUtils {
     /** The logger to use. */
-    private static final Logger log = Logger.getLogger(AssertUtils.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(AssertUtils.class.getName());
 
     // Prefixes to make up method names
     private static final String SET_PREFIX = "set";
