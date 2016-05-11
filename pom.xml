@@ -27,14 +27,14 @@
     <!-- Technical/functional definitions -->
     <groupId>com.github.mureinik</groupId>
     <artifactId>bpunit</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <scm>
         <connection>scm:git:git://github.com/mureinik/bpunit.git</connection>
         <developerConnection>scm:git:git@github.com:mureinik/bpunit.git</developerConnection>
         <url>http://github.com/mureinik/bpunit</url>
-      <tag>bpunit-1.2</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
