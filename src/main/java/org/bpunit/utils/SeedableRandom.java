@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 public class SeedableRandom extends Random {
 
     /** The logger to use. */
-    private static final Logger log = LoggerFactory.getLogger(SeedableRandom.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(SeedableRandom.class);
 
     /* --- Class constants --- */
 

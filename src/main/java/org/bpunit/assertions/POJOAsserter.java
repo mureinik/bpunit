@@ -20,7 +20,7 @@ public class POJOAsserter<T> {
     /* Constants */
 
     /** The logger to use. */
-    private static final Logger log = LoggerFactory.getLogger(POJOAsserter.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(POJOAsserter.class);
 
     // Prefixes to make up method names
     private static final String SET_PREFIX = "set";
