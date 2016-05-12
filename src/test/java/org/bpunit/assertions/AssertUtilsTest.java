@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
 import java.util.Random;
 
+import org.bpunit.examples.ObjectRandom;
 import org.bpunit.examples.SomeClass;
 import org.bpunit.examples.SomeClassWithThrowingSetter;
 import org.bpunit.utils.SeedableRandom;
@@ -16,21 +16,6 @@ import org.junit.Test;
  * A test case for {@link AssertUtils}
  */
 public class AssertUtilsTest {
-    private static class ObjectRandom extends SeedableRandom {
-        public ObjectRandom() {
-            super(123L);
-        }
-
-        public Object nextObject() {
-            return new Object();
-        }
-
-        /** Intentionally misleading name */
-        public Date nextSimpleDateFormat() {
-            return new Date();
-        }
-    }
-
     @Test
     public void testDefaultRandom() {
         assentSimpleClass(null, false);
