@@ -3,7 +3,7 @@
 
 ### What is BPUnit?
 BPUnit (short for Boiler Plate Unit) is a set of utilities to help alleviate
-the pain of boiler-plating your JUnit tests.
+the pain of boiler-plating your [JUnit](http://junit.org) tests.
 
 ### Why do I need BPUnit?
 
