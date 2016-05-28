@@ -89,3 +89,6 @@ empty and some were introduced:
       However, note that it only uses trivial syntax, and would be binary
       compatible with any slf4j binary from the 1.7.x generation, if not
       earlier.
+
+### Continuous Integration
+[![Build Status](https://travis-ci.org/mureinik/bpunit.svg?branch=master)](https://travis-ci.org/mureinik/bpunit)
