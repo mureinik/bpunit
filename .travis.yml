@@ -3,3 +3,18 @@ jdk:
   - openjdk7
   - oraclejdk8
   - oraclejdk7
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "aO8wJzrjtcptRfuqIbubbcICXHNaitSPatT+3r9lmaUZN9mymuo+Cg/x0yufvqz81wPb4lp76jAlEppOM4dt6jSG5I+4XXAqsCezaFMkVgOqUusiD7dAHI5BM10l5vR5qB4C/hbwtsLN+AM+fuA2tyg3fV7tTlpqoaTfA8B1OtJwp8NX7FN/Lx88iAtddc40m6ADN18iErqi1qPNqdTv+iPBp/TicBF228H/6G5hRjR5lsN3apFa//Udf65gvtQfSZzLcEniBWf2L708OYrE+NV82hBk2/z4LiJwJJriiQ53v02mIP7qEG4Rd0wHo2Rr8IJmqDQnTh16OfoydayKX3KR+b4/IpcQ5CGgxB2nXhLX0hhmFTpxEFbGBVFzu1BLmQ0xfRHznKZExMY9YiIbWtM13yDGoG5wGUP6WsCyWr0EV/2VhtywgFSk8Uoh8HsupvJFX+53hga2e87or1Ka3iivFTNkat40kt3xzOQrgtzsprWAfjxF2JmonQPse0FeqNyPifTUSUBeVXdmaf2y7MPho75rdGT/6CrqTwycyMVZbQPAfW1akz+q4DVuBEJpcc/jQtCV4KZijEQCDd9s+HYlhsgZ94fzh0HQ7kKX6JUz6AcZwHkanN79sztn+F5oZyTCvwvydz49D+JBINAWCfdN52z3l7f9/YW4bBaYtaI="
+
+addons:
+  coverity_scan:
+    project:
+      name: "mureinik/bpunit"
+      description: "Build submitted via Travis CI"
+    notification_email: mureinik@gmail.com
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile"
