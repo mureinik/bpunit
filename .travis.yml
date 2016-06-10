@@ -5,7 +5,7 @@ jdk:
   - oraclejdk7
 
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
+  - mvn clean findbugs:check cobertura:cobertura coveralls:report
 
 env:
   global:
