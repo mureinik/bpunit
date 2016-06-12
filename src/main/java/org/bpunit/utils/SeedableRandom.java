@@ -105,21 +105,21 @@ public class SeedableRandom extends Random {
     /* --- Byte-related Methods --- */
 
     /**
-     * Randomizes a <tt>byte</tt> value.
+     * Randomizes a {@code byte} value.
      */
     public byte nextByte() {
         return (byte) super.nextInt();
     }
 
     /**
-     * Randomize a <tt>byte</tt> value between 0 (inclusive) and the specified value (exclusive).
+     * Randomize a {@code byte} value between 0 (inclusive) and the specified value (exclusive).
      */
     public byte nextByte(byte b) {
         return (byte) super.nextInt(b);
     }
 
     /**
-     * Randomize a <tt>byte</tt> value in the given range [min, max].
+     * Randomize a {@code byte} value in the given range [min, max].
      */
     public byte nextByte(byte min, byte max) {
         if (min > max) {
@@ -132,21 +132,21 @@ public class SeedableRandom extends Random {
     /* --- Short-related Methods --- */
 
     /**
-     * Randomizes a <tt>short</tt> value.
+     * Randomizes a {@code short} value.
      */
     public short nextShort() {
         return (short) super.nextInt();
     }
 
     /**
-     * Randomize a <tt>short</tt> value between 0 (inclusive) and the specified value (exclusive).
+     * Randomize a {@code short} value between 0 (inclusive) and the specified value (exclusive).
      */
     public short nextShort(short s) {
         return (short) super.nextInt(s);
     }
 
     /**
-     * Randomize a <tt>short</tt> value in the given range [min, max].
+     * Randomize a {@code short} value in the given range [min, max].
      */
     public short nextShort(short min, short max) {
         if (min > max) {
@@ -160,14 +160,14 @@ public class SeedableRandom extends Random {
     /* --- Integer-related Methods --- */
 
     /**
-     * Randomize an <tt>int</tt> and return it as an {@link Integer}
+     * Randomize an {@code int} and return it as an {@link Integer}
      */
     public Integer nextInteger() {
         return nextInt();
     }
 
     /**
-     * Randomize an <tt>int</tt> value in the given range [min, max].
+     * Randomize an {@code int} value in the given range [min, max].
      */
     public int nextInt(int min, int max) {
         if (min > max) {
@@ -181,7 +181,7 @@ public class SeedableRandom extends Random {
     /* --- Long-related Methods --- */
 
     /**
-     * Randomize a <tt>long</tt> value between 0 (inclusive) and the specified value (exclusive).
+     * Randomize a {@code long} value between 0 (inclusive) and the specified value (exclusive).
      */
     public long nextLong(long l) {
         if (l <= 0) {
@@ -196,7 +196,7 @@ public class SeedableRandom extends Random {
     }
 
     /**
-     * Randomize a <tt>long</tt> value in the given range [min, max].
+     * Randomize a {@code long} value in the given range [min, max].
      */
     public long nextLong(long min, long max) {
         if (min > max) {
@@ -210,14 +210,14 @@ public class SeedableRandom extends Random {
     /* --- Float-related Methods --- */
 
     /**
-     * Randomize a <tt>float</tt> value between 0.0 (inclusive) and the specified value (exclusive).
+     * Randomize a {@code float} value between 0.0 (inclusive) and the specified value (exclusive).
      */
     public float nextFloat(float f) {
         return nextFloat(f, false);
     }
 
     /**
-     * Randomize a <tt>float</tt> value between 0.0 (inclusive) and the specified value (inclusive or exclusive as
+     * Randomize a {@code float} value between 0.0 (inclusive) and the specified value (inclusive or exclusive as
      * required).
      * 
      * @param inclusive
@@ -243,7 +243,7 @@ public class SeedableRandom extends Random {
     }
 
     /**
-     * Randomize a <tt>float</tt> value in the given range [min, max].
+     * Randomize a {@code float} value in the given range [min, max].
      */
     public float nextFloat(float min, float max) {
         if (min > max) {
@@ -257,14 +257,14 @@ public class SeedableRandom extends Random {
     /* --- Double-related Methods --- */
 
     /**
-     * Randomize a <tt>double</tt> value between 0.0 (inclusive) and the specified value (exclusive).
+     * Randomize a {@code double} value between 0.0 (inclusive) and the specified value (exclusive).
      */
     public double nextDouble(double d) {
         return nextDouble(d, false);
     }
 
     /**
-     * Randomize a <tt>double</tt> value between 0.0 (inclusive) and the specified value (inclusive or exclusive as
+     * Randomize a {@code double} value between 0.0 (inclusive) and the specified value (inclusive or exclusive as
      * required).
      * 
      * @param inclusive
@@ -449,7 +449,7 @@ public class SeedableRandom extends Random {
     /* --- General Utility Methods --- */
 
     /**
-     * Creates a <tt>byte</tt> array of the specified size, initialized with random values.
+     * Creates a {@code byte} array of the specified size, initialized with random values.
      */
     public byte[] nextBytes(int size) {
         byte[] data = new byte[size];
