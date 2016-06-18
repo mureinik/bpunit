@@ -40,6 +40,13 @@ public class POJOAsserter<T> {
         primitiveToBoxing.put(Double.TYPE, Double.class);
     }
 
+    private static final Map<Class<?>, Class<?>> boxingToPrimitive = new HashMap<>();
+    static {
+        for (Map.Entry<Class<?>, Class<?>> entry : primitiveToBoxing.entrySet()) {
+            boxingToPrimitive.put(entry.getValue(), entry.getKey());
+        }
+    }
+
 
     /* Data Members */
 
@@ -156,6 +163,10 @@ public class POJOAsserter<T> {
      * @return A randomly generated value of type {@code type}.
      */
     private static <T> T getRandomValue(Random random, Class<T> type) {
+        Class primitiveType = boxingToPrimitive.get(type);
+        if (primitiveType != null) {
+            type = primitiveType;
+        }
         String typeName = type.getSimpleName();
         if (type.isPrimitive()) {
             typeName = capitalizeFirst(typeName);

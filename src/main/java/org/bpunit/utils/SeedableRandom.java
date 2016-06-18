@@ -159,13 +159,6 @@ public class SeedableRandom extends Random {
     /* --- Integer-related Methods --- */
 
     /**
-     * Randomize an {@code int} and return it as an {@link Integer}
-     */
-    public Integer nextInteger() {
-        return nextInt();
-    }
-
-    /**
      * Randomize an {@code int} value in the given range [min, max].
      */
     public int nextInt(int min, int max) {
