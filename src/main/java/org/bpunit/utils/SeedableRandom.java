@@ -456,11 +456,11 @@ public class SeedableRandom extends Random {
     /* -- Big Integer related methods -- */
 
     /**
-     * generates a new big integer with the desired number of bits the generated number will always be positive.
-     * 
+     * Randomize a positive {@link BigInteger} value represented by no more than {@code numBits} bits.
+     *
      * @param numOfBits
-     *            the number of bits of the Big Integer
-     * @return the randomized big integer.
+     *            the maximum number of bits of the Big Integer
+     * @return the randomized {@link BigInteger}.
      */
     public BigInteger nextBigInt(int numOfBits) {
         return new BigInteger(numOfBits, this);
