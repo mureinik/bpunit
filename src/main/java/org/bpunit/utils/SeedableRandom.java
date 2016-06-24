@@ -278,6 +278,17 @@ public class SeedableRandom extends Random {
         return (rand * d);
     }
 
+    /**
+     * Randomize a {@code double} value in the given range [min, max].
+     */
+    public double nextDouble(double min, double max) {
+        if (min > max) {
+            throw new IllegalArgumentException(MIN_MAX_ERROR);
+        }
+
+        return (min + nextDouble(max - min, false));
+    }
+
     /* --- Date Methods --- */
 
     public Date nextDate() {
