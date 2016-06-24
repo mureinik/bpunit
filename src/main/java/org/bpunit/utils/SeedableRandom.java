@@ -462,7 +462,7 @@ public class SeedableRandom extends Random {
      *            the maximum number of bits of the Big Integer
      * @return the randomized {@link BigInteger}.
      */
-    public BigInteger nextBigInt(int numOfBits) {
+    public BigInteger nextBigInteger(int numOfBits) {
         return new BigInteger(numOfBits, this);
     }
 
