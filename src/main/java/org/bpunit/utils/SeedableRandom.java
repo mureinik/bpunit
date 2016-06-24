@@ -240,7 +240,7 @@ public class SeedableRandom extends Random {
             throw new IllegalArgumentException(MIN_MAX_ERROR);
         }
 
-        return (min + nextFloat(max - min, true));
+        return (min + nextFloat(max - min, false));
     }
 
     /* --- Double-related Methods --- */
