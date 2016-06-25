@@ -45,7 +45,6 @@ public class SeedableRandomTest {
         byte b = random.nextByte((byte) 2, (byte) 4);
         assertTrue(b < (byte) 4);
         assertTrue(b >= (byte) 2);
-
     }
 
     @Test
