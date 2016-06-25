@@ -13,6 +13,10 @@ import java.util.List;
 /**
  * A test class for the {@link SeedableRandom} class. It does not test the random distribution of the various methods,
  * just that the generated values fit the required parameters.
+ *
+ * The tests for {@code nextPrimitive()} will just fail if the method itself throws and exception or returns
+ * {@code null} as it will cause the outboxing to fail. Other than that, there's nothing much to assert on a method
+ * that can return any value.
  */
 @SuppressWarnings("unused")
 public class SeedableRandomTest {
@@ -29,7 +33,6 @@ public class SeedableRandomTest {
 
     @Test
     public void nextByte() {
-        // Will fail if nextByte() throws an exception or returns null
         byte b = random.nextByte();
     }
 
