@@ -129,6 +129,33 @@ public class SeedableRandom extends Random {
         return (byte) (min + nextByte((byte) (max - min + 1)));
     }
 
+    /* --- Char-related Methods --- */
+
+    /**
+     * Randomizes a {@code char} value.
+     */
+    public char nextChar() {
+        return (char) super.nextInt();
+    }
+
+    /**
+     * Randomize a {@code char} value between 0 (inclusive) and the specified value (exclusive).
+     */
+    public char nextChar(char c) {
+        return (char) super.nextInt(c);
+    }
+
+    /**
+     * Randomize a {@code char} value in the given range [min, max].
+     */
+    public char nextChar(char min, char max) {
+        if (min > max) {
+            throw new IllegalArgumentException(MIN_MAX_ERROR);
+        }
+
+        return (char) (min + nextChar((char) (max - min + 1)));
+    }
+
     /* --- Short-related Methods --- */
 
     /**

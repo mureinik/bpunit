@@ -51,6 +51,25 @@ public class SeedableRandomTest {
     }
 
     @Test
+    public void nextChar() {
+        char c = random.nextChar();
+    }
+
+    @Test
+    public void nextCharMax() {
+        char c = random.nextChar('z');
+        assertTrue(c < 'z');
+        assertTrue(c >= (char) 0);
+    }
+
+    @Test
+    public void nextCharMinMax() {
+        char c = random.nextChar('a', 'z');
+        assertTrue(c < 'z');
+        assertTrue(c >= 'a');
+    }
+
+    @Test
     public void nextShort() {
         short s = random.nextShort();
     }
