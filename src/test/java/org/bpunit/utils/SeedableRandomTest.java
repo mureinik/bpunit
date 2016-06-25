@@ -169,5 +169,4 @@ public class SeedableRandomTest {
     public void nextEnum() {
         TestEnum testEnum = random.nextEnum(TestEnum.class);
     }
-
 }
