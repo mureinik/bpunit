@@ -32,6 +32,11 @@ public class SeedableRandomTest {
     }
 
     @Test
+    public void nextBoolean() {
+        boolean b = random.nextBoolean();
+    }
+
+    @Test
     public void nextByte() {
         byte b = random.nextByte();
     }
