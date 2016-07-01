@@ -142,7 +142,7 @@ public class SeedableRandom extends Random {
      * Randomize a {@code char} value between 0 (inclusive) and the specified value (exclusive).
      */
     public char nextChar(char c) {
-        return (char) super.nextInt(c);
+        return (char) nextInt(c);
     }
 
     /**
