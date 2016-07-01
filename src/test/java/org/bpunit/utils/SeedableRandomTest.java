@@ -60,6 +60,11 @@ public class SeedableRandomTest {
         assertTrue(b >= (byte) 2);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextByteMinMaxMinLargerThanMax() {
+        byte b = random.nextByte((byte) 4, (byte) 2);
+    }
+
     @Test
     public void nextChar() {
         char c = random.nextChar();
@@ -77,6 +82,11 @@ public class SeedableRandomTest {
         char c = random.nextChar('a', 'z');
         assertTrue(c < 'z');
         assertTrue(c >= 'a');
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextCharMinMaxMinLargerThanMax() {
+        char c = random.nextChar('c', 'a');
     }
 
     @Test
@@ -102,6 +112,12 @@ public class SeedableRandomTest {
         assertTrue(s >= (short) 100);
     }
 
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextShortMinMaxMinLargerThanMax() {
+        short s = random.nextShort((short) 200, (short) 100);
+    }
+
     @Test
     public void nextInt() {
         int i = random.nextInt();
@@ -123,6 +139,11 @@ public class SeedableRandomTest {
         int i = random.nextInt(100, 1000);
         assertTrue(i < 1000);
         assertTrue(i >= 100);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextIntMinMaxMinLargerThanMax() {
+        int i = random.nextInt(1000, 100);
     }
 
     @Test
@@ -148,6 +169,11 @@ public class SeedableRandomTest {
         assertTrue(l >= 12000L);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextLongMinMaxMinLargerThanMax() {
+        long l = random.nextLong(1500L, 1200L);
+    }
+
     @Test
     public void nextFloat() {
         float f = random.nextFloat();
@@ -171,6 +197,11 @@ public class SeedableRandomTest {
         assertTrue(f >= 2.0f);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextFloatMinMaxMinLargerThanMax() {
+        float f = random.nextFloat(5.0f, 2.0f);
+    }
+
     @Test
     public void nextDouble() {
         double d = random.nextDouble();
@@ -192,6 +223,11 @@ public class SeedableRandomTest {
         double d = random.nextDouble(2.0, 5.0);
         assertTrue(d < 5.0);
         assertTrue(d >= 2.0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextDoubleMinMaxMinLargerThanMax() {
+        double d = random.nextDouble(5.0, 2.0);
     }
 
     @Test
