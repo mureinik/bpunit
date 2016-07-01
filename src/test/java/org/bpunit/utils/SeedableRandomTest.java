@@ -43,6 +43,11 @@ public class SeedableRandomTest {
         assertTrue(b >= (byte) 0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextByteNegativeMax() {
+        byte b = random.nextByte((byte) -1);
+    }
+
     @Test
     public void nextByteMinMax() {
         byte b = random.nextByte((byte) 2, (byte) 4);
@@ -80,6 +85,11 @@ public class SeedableRandomTest {
         assertTrue(s < (short) 200);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextShortNegativeMax() {
+        short s = random.nextShort((short) -1);
+    }
+
     @Test
     public void nextShortMinMax() {
         short s = random.nextShort((short) 100, (short) 200);
@@ -96,6 +106,11 @@ public class SeedableRandomTest {
     public void nextIntMax() {
         int i = random.nextInt(1000);
         assertTrue(i < 1000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextIntNegativeMax() {
+        int i = random.nextInt(-1);
     }
 
     @Test
@@ -116,6 +131,11 @@ public class SeedableRandomTest {
         assertTrue(l < 15000L);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextLongNegativeMax() {
+        long l= random.nextLong(-1L);
+    }
+
     @Test
     public void nextLongMinMax() {
         long l = random.nextLong(12000L, 15000L);
@@ -134,6 +154,11 @@ public class SeedableRandomTest {
         assertTrue(f < 5.0f);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextFloatNegativeMax() {
+        float f = random.nextFloat(-1.0F);
+    }
+
     @Test
     public void nextFloatMinMax() {
         float f = random.nextFloat(2.0f, 5.0f);
@@ -150,6 +175,11 @@ public class SeedableRandomTest {
     public void nextDoubleMax() {
         double d = random.nextDouble(5.0);
         assertTrue(d < 5.0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextDoubleNegativeMax() {
+        double d = random.nextDouble(-1.0);
     }
 
     @Test
