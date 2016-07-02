@@ -37,6 +37,14 @@ public class SeedableRandomTest {
     }
 
     @Test
+    public void setSeed() {
+        long oldSeed = random.getSeed();
+        long newSeed = oldSeed + 100;
+        random.setSeed(newSeed);
+        assertEquals(newSeed, random.getSeed());
+    }
+
+    @Test
     public void nextByte() {
         byte b = random.nextByte();
     }
