@@ -230,33 +230,12 @@ public class SeedableRandom extends Random {
      * Randomize a {@code float} value between 0.0 (inclusive) and the specified value (exclusive).
      */
     public float nextFloat(float f) {
-        return nextFloat(f, false);
-    }
-
-    /**
-     * Randomize a {@code float} value between 0.0 (inclusive) and the specified value (inclusive or exclusive as
-     * required).
-     * 
-     * @param inclusive
-     *            Whether or not, the returned value should include the given one.
-     */
-    public float nextFloat(float f, boolean inclusive) {
         if (f <= 0.0F) {
             throw new IllegalArgumentException("f must be greater than 0!");
         }
 
         // Randomize a float
-        float rand = super.nextFloat();
-
-        // If the returned value should not include the given one,
-        // make sure that the randomized float is not exactly 1.0
-        if (!inclusive) {
-            while (rand == 1.0F) {
-                rand = super.nextFloat();
-            }
-        }
-
-        return (rand * f);
+        return super.nextFloat() * f;
     }
 
     /**
@@ -267,7 +246,7 @@ public class SeedableRandom extends Random {
             throw new IllegalArgumentException(MIN_MAX_ERROR);
         }
 
-        return (min + nextFloat(max - min, false));
+        return (min + nextFloat(max - min));
     }
 
     /* --- Double-related Methods --- */
@@ -276,33 +255,12 @@ public class SeedableRandom extends Random {
      * Randomize a {@code double} value between 0.0 (inclusive) and the specified value (exclusive).
      */
     public double nextDouble(double d) {
-        return nextDouble(d, false);
-    }
-
-    /**
-     * Randomize a {@code double} value between 0.0 (inclusive) and the specified value (inclusive or exclusive as
-     * required).
-     * 
-     * @param inclusive
-     *            Whether or not, the returned value should include the given one.
-     */
-    public double nextDouble(double d, boolean inclusive) {
         if (d <= 0.0D) {
             throw new IllegalArgumentException("d must be greater than 0!");
         }
 
         // Randomize a double
-        double rand = super.nextDouble();
-
-        // If the returned value should not include the given one,
-        // make sure that the randomized float is not exactly 1.0
-        if (!inclusive) {
-            while (rand == 1.0D) {
-                rand = super.nextDouble();
-            }
-        }
-
-        return (rand * d);
+        return super.nextDouble() *d;
     }
 
     /**
@@ -313,7 +271,7 @@ public class SeedableRandom extends Random {
             throw new IllegalArgumentException(MIN_MAX_ERROR);
         }
 
-        return (min + nextDouble(max - min, false));
+        return (min + nextDouble(max - min));
     }
 
     /* --- Date Methods --- */
