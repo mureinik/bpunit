@@ -405,7 +405,7 @@ public class SeedableRandom extends Random {
         final char[] buffer = new char[length];
 
         for (int i = 0; i < length; ++i) {
-            buffer[i] = chars[next(chars.length)];
+            buffer[i] = chars[nextInt(chars.length)];
         }
         return new String(buffer);
     }
