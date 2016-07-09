@@ -316,17 +316,16 @@ public class SeedableRandom extends Random {
      *            Whether or not, the string should contain only printable characters.
      */
     public String nextString(int length, boolean printable) {
-        if (printable) {
-            byte[] data = new byte[length];
-
-            for (int i = 0; i < length; ++i) {
-                data[i] = (byte) nextInt(FIRST_PRINTABLE_CHAR, LAST_PRINTABLE_CHAR);
+        char[] data = new char[length];
+        for (int i = 0; i < length; ++i) {
+            if (printable) {
+                data[i] = nextChar(FIRST_PRINTABLE_CHAR, LAST_PRINTABLE_CHAR);
+            } else {
+                data[i] = nextChar();
             }
-
-            return new String(data, StandardCharsets.UTF_8);
-
         }
-        return new String(nextBytes(length), StandardCharsets.UTF_8);
+
+        return new String(data);
     }
 
     /**
