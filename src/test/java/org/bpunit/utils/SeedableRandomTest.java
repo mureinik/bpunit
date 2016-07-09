@@ -269,4 +269,67 @@ public class SeedableRandomTest {
     public void nextEnum() {
         TestEnum testEnum = random.nextEnum(TestEnum.class);
     }
+
+    @Test
+    public void nextString() {
+        String s = random.nextString();
+    }
+
+    @Test
+    public void nextStringLength() {
+        String s = random.nextString(15);
+        assertEquals(15, s.length());
+    }
+
+    @Test
+    public void nextStringLengthChars() {
+        char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
+        String s = random.nextString(15, chars);
+        assertEquals(15, s.length());
+        Arrays.sort(chars);
+        for (char c : s.toCharArray()) {
+            assertTrue(Arrays.binarySearch(chars, c) > -1);
+        }
+    }
+
+    @Test
+    public void nextStringMinMaxLength() {
+        String s = random.nextString(2, 15);
+        assertTrue(s.length() >= 2);
+        assertTrue(s.length() < 15);
+    }
+
+    @Test
+    public void nextStringLengthPrintable() {
+        String s = random.nextString(15, true);
+        assertEquals(15, s.length());
+        assertAsciiPrintable(s);
+    }
+
+    @Test
+    public void nextStringLengthNotPrintable() {
+        String s = random.nextString(15, false);
+        assertEquals(15, s.length());
+    }
+
+    @Test
+    public void nextStringMinMaxLengthPrintable() {
+        String s = random.nextString(2, 15, true);
+        assertTrue(s.length() >= 2);
+        assertTrue(s.length() < 15);
+        assertAsciiPrintable(s);
+    }
+
+    @Test
+    public void nextStringMinMaxLengthNotPrintable() {
+        String s = random.nextString(2, 15, false);
+        assertTrue(s.length() >= 2);
+        assertTrue(s.length() < 15);
+    }
+
+    private static void assertAsciiPrintable(String s) {
+        for (char c : s.toCharArray()) {
+            assertTrue(c >= 32 && c < 127);
+        }
+    }
 }
