@@ -411,20 +411,20 @@ public class SeedableRandom extends Random {
     }
 
     /**
+     * Randomize a printable {@link String} of a length in the given range [min, max].
+     */
+    public String nextString(int min, int max) {
+        return nextString(nextInt(min, max), true);
+    }
+
+    /**
      * Randomize a {@link String} of a length in the given range [min, max].
-     * 
+     *
      * @param printable
      *            Whether or not, the string should contain only printable characters.
      */
     public String nextString(int min, int max, boolean printable) {
         return nextString(nextInt(min, max), printable);
-    }
-
-    /**
-     * Randomize a printable {@link String} of a length in the given range [min, max].
-     */
-    public String nextString(int min, int max) {
-        return nextString(nextInt(min, max), true);
     }
 
     /* --- General Utility Methods --- */
