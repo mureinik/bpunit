@@ -1,7 +1,6 @@
 package org.bpunit.utils;
 
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -35,12 +34,6 @@ public class SeedableRandom extends Random {
 
     /** The last printable character. */
     private static final char LAST_PRINTABLE_CHAR = '~';
-
-    /** The first XML printable character. */
-    private static final char FIRST_XML_PRINTABLE_CHAR = 'A';
-
-    /** The last XML printable character. */
-    private static final char LAST_XML_PRINTABLE_CHAR = 'Z';
 
     /** The legal characters for an entity name. */
     private static final char[] LEGAL_PROPERTY_CHARS =
@@ -337,21 +330,6 @@ public class SeedableRandom extends Random {
     public String nextNumericString(int length) {
         return Long.toString(nextLong(
                 (long) Math.pow(10, length - 1), (long) (Math.pow(10, length) - 1)));
-    }
-
-    /**
-     * Randomize a valid XML Element name.
-     * 
-     * @param length
-     *            The requested length of the string.
-     */
-    public String nextXmlString(int length) {
-        byte[] data = new byte[length];
-        for (int i = 0; i < length; ++i) {
-            data[i] = (byte) nextInt(FIRST_XML_PRINTABLE_CHAR, LAST_XML_PRINTABLE_CHAR);
-        }
-
-        return new String(data, StandardCharsets.UTF_8);
     }
 
     /**
