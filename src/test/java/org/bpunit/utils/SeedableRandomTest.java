@@ -1,6 +1,7 @@
 package org.bpunit.utils;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -348,6 +349,7 @@ public class SeedableRandomTest {
     }
 
     private static void assertNumeric(String s) {
+        assertNotEquals('0', s.charAt(0));
         for (char c : s.toCharArray()) {
             assertTrue(Character.isDigit(c));
         }
