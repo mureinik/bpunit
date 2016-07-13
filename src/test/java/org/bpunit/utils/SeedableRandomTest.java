@@ -332,4 +332,17 @@ public class SeedableRandomTest {
             assertTrue(c >= 32 && c < 127);
         }
     }
+
+    @Test
+    public void nextNumericString() {
+        String s = random.nextNumericString(15);
+        assertEquals(15, s.length());
+        assertNumeric(s);
+    }
+
+    private static void assertNumeric(String s) {
+        for (char c : s.toCharArray()) {
+            assertTrue(Character.isDigit(c));
+        }
+    }
 }
