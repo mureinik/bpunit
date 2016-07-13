@@ -348,6 +348,13 @@ public class SeedableRandomTest {
         assertNumeric(s);
     }
 
+    @Test
+    public void nextNumericStringShort() {
+        String s = random.nextNumericString(1);
+        assertEquals(1, s.length());
+        assertNumeric(s);
+    }
+
     private static void assertNumeric(String s) {
         assertNotEquals('0', s.charAt(0));
         for (char c : s.toCharArray()) {
