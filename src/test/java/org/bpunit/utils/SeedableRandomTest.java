@@ -340,6 +340,13 @@ public class SeedableRandomTest {
         assertNumeric(s);
     }
 
+    @Test
+    public void nextNumericStringLong() {
+        String s = random.nextNumericString(100);
+        assertEquals(100, s.length());
+        assertNumeric(s);
+    }
+
     private static void assertNumeric(String s) {
         for (char c : s.toCharArray()) {
             assertTrue(Character.isDigit(c));

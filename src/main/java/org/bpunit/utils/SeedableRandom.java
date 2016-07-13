@@ -39,6 +39,13 @@ public class SeedableRandom extends Random {
     private static final char[] LEGAL_PROPERTY_CHARS =
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_".toCharArray();
 
+    /** The legal characters for a numerical string. */
+    private static final char[] LEGAL_NUMERIC_CHARS = "1234567890".toCharArray();
+
+    /** The legal characters for a numerical string. */
+    private static final char[] LEGAL_FIRST_NUMERIC_CHARS =
+            Arrays.copyOfRange(LEGAL_NUMERIC_CHARS, 0, LEGAL_NUMERIC_CHARS.length - 2);
+
     /** The default seed to use with {@link #SeedableRandom()} */
     private static final long DEFAULT_SEED = 19811611;
 
@@ -328,8 +335,7 @@ public class SeedableRandom extends Random {
      *            The requested length of the string.
      */
     public String nextNumericString(int length) {
-        return Long.toString(nextLong(
-                (long) Math.pow(10, length - 1), (long) (Math.pow(10, length) - 1)));
+        return nextString(1, LEGAL_FIRST_NUMERIC_CHARS) + nextString(length - 1, LEGAL_NUMERIC_CHARS);
     }
 
     /**
