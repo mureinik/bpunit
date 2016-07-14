@@ -361,4 +361,13 @@ public class SeedableRandomTest {
             assertTrue(Character.isDigit(c));
         }
     }
+
+    @Test
+    public void nextPropertyString() {
+        String s = random.nextPropertyString(10);
+        assertEquals(10, s.length());
+        for (char c : s.toCharArray()) {
+            assertTrue(Character.isJavaIdentifierPart(c));
+        }
+    }
 }
