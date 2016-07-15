@@ -283,6 +283,12 @@ public class SeedableRandomTest {
     }
 
     @Test
+    public void nextStringZeroLength() {
+        String s = random.nextString(0);
+        assertEquals(0, s.length());
+    }
+
+    @Test
     public void nextStringLengthChars() {
         char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
         String s = random.nextString(15, chars);
@@ -291,6 +297,13 @@ public class SeedableRandomTest {
         for (char c : s.toCharArray()) {
             assertTrue(Arrays.binarySearch(chars, c) > -1);
         }
+    }
+
+    @Test
+    public void nextStringZeroLengthChars() {
+        char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
+        String s = random.nextString(0, chars);
+        assertEquals(0, s.length());
     }
 
     @Test
@@ -308,9 +321,21 @@ public class SeedableRandomTest {
     }
 
     @Test
+    public void nextStringZeroLengthPrintable() {
+        String s = random.nextString(0, true);
+        assertEquals(0, s.length());
+    }
+
+    @Test
     public void nextStringLengthNotPrintable() {
         String s = random.nextString(15, false);
         assertEquals(15, s.length());
+    }
+
+    @Test
+    public void nextStringZeroLengthNotPrintable() {
+        String s = random.nextString(0, false);
+        assertEquals(0, s.length());
     }
 
     @Test
@@ -355,6 +380,12 @@ public class SeedableRandomTest {
         assertNumeric(s);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextNumericStringZeroLength() {
+        String s = random.nextNumericString(0);
+    }
+
+
     private static void assertNumeric(String s) {
         assertNotEquals('0', s.charAt(0));
         for (char c : s.toCharArray()) {
@@ -370,4 +401,11 @@ public class SeedableRandomTest {
             assertTrue(Character.isJavaIdentifierPart(c));
         }
     }
+
+    @Test
+    public void nextPropertyStringZeroLength() {
+        String s = random.nextPropertyString(0);
+        assertEquals(0, s.length());
+    }
+
 }
