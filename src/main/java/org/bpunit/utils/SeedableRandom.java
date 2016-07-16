@@ -376,9 +376,7 @@ public class SeedableRandom extends Random {
      *            The requested length of the string.
      */
     public String nextString(int length, char[] chars) {
-        if (length == 0) {
-            return "";
-        } else if (length < 0) {
+        if (length < 0) {
             throw new IllegalArgumentException("Requested random string length " + length + " is less than 0.");
         }
 
