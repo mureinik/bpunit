@@ -322,6 +322,11 @@ public class SeedableRandomTest {
         String s = random.nextString(15, null);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextStringEmptyChars() {
+        String s = random.nextString(15, new char[0]);
+    }
+
     @Test
     public void nextStringMinMaxLength() {
         String s = random.nextString(2, 15);
