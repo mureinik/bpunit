@@ -316,6 +316,10 @@ public class SeedableRandom extends Random {
      *            Whether or not, the string should contain only printable characters.
      */
     public String nextString(int length, boolean printable) {
+        if (length < 0) {
+            throw new IllegalArgumentException("Requested random string length " + length + " is less than 0.");
+        }
+
         char[] data = new char[length];
         for (int i = 0; i < length; ++i) {
             if (printable) {

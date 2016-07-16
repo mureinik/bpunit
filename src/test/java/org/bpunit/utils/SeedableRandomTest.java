@@ -288,6 +288,11 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextStringNegativeLength() {
+        String s = random.nextString(-5);
+    }
+
     @Test
     public void nextStringLengthChars() {
         char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
@@ -304,6 +309,12 @@ public class SeedableRandomTest {
         char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
         String s = random.nextString(0, chars);
         assertEquals(0, s.length());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextStringNegativeLengthChars() {
+        char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
+        String s = random.nextString(-5, chars);
     }
 
     @Test
@@ -326,6 +337,11 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextStringNegativeLengthPrintable() {
+        String s = random.nextString(-5, true);
+    }
+
     @Test
     public void nextStringLengthNotPrintable() {
         String s = random.nextString(15, false);
@@ -336,6 +352,11 @@ public class SeedableRandomTest {
     public void nextStringZeroLengthNotPrintable() {
         String s = random.nextString(0, false);
         assertEquals(0, s.length());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextStringNegativeLengthNotPrintable() {
+        String s = random.nextString(-5, false);
     }
 
     @Test
@@ -385,6 +406,10 @@ public class SeedableRandomTest {
         String s = random.nextNumericString(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextNumericStringNegaticeLength() {
+        String s = random.nextNumericString(-5);
+    }
 
     private static void assertNumeric(String s) {
         assertNotEquals('0', s.charAt(0));
@@ -408,4 +433,8 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void nextPropertyStringNegativeLength() {
+        String s = random.nextPropertyString(-5);
+    }
 }
