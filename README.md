@@ -91,4 +91,4 @@ empty and some were introduced:
       earlier.
 
 ### Continuous Integration
-[![Build Status](https://travis-ci.org/mureinik/bpunit.svg?branch=master)](https://travis-ci.org/mureinik/bpunit)
+[![Build Status](https://travis-ci.org/mureinik/bpunit.svg?branch=master)](https://travis-ci.org/mureinik/bpunit) [![Coverage Status](https://coveralls.io/repos/github/mureinik/bpunit/badge.svg?branch=master)](https://coveralls.io/github/mureinik/bpunit?branch=master)
