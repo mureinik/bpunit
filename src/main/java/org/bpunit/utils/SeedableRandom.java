@@ -444,13 +444,9 @@ public class SeedableRandom extends Random {
      * @param enumClass
      *            The enum class to randomize.
      * 
-     * @return A random enum from the given enum, or null if got null.
+     * @return A random enum from the given enum.
      */
     public <T extends Enum<?>> T nextEnum(Class<T> enumClass) {
-        if (enumClass == null) {
-            return null;
-        }
-
         return pickRandom(enumClass.getEnumConstants());
     }
 }
