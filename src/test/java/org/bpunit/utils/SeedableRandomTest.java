@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -237,6 +238,11 @@ public class SeedableRandomTest {
     @Test(expected = IllegalArgumentException.class)
     public void nextDoubleMinMaxMinLargerThanMax() {
         double d = random.nextDouble(5.0, 2.0);
+    }
+
+    @Test
+    public void nextDate() {
+        Date d = random.nextDate();
     }
 
     @Test
