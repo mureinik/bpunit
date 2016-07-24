@@ -276,6 +276,10 @@ public class SeedableRandom extends Random {
 
     /* --- Date Methods --- */
 
+    /**
+     * Randomize a {@link Date} object. Note that this method provides no guaranteee about the randomized date, and
+     * just constructs one from a randomly generated {@code long}.
+     */
     public Date nextDate() {
         return new Date(nextLong());
     }
