@@ -63,6 +63,9 @@ public class POJOAsserter<T> {
     /** The behavior for when a setter cannot be found for a property */
     private Behavior noGetterBehavior;
 
+    /** The behavior for a random value generation failure */
+    private Behavior randomFailureBehavior;
+
 
     /* Constructors */
 
@@ -70,11 +73,13 @@ public class POJOAsserter<T> {
      * @param pojo The POJO to be tested
      * @param random A random data source
      * @param noGetterBehavior The {@link Behavior} to perform when a property doesn't have a setter
+     * @param randomFailureBehavior The {@link Behavior} to perform when a random value can't be generated
      */
-    POJOAsserter(T pojo, Random random, Behavior noGetterBehavior) {
+    POJOAsserter(T pojo, Random random, Behavior noGetterBehavior, Behavior randomFailureBehavior) {
         this.pojo = pojo;
         this.random = random;
         this.noGetterBehavior = noGetterBehavior;
+        this.randomFailureBehavior = randomFailureBehavior;
     }
 
 
@@ -104,7 +109,7 @@ public class POJOAsserter<T> {
             }
 
             String propertyName = setMethodName.substring(SET_PREFIX.length());
-            Class<?> type = paramTypes[0];
+            Class<T> type = (Class<T>)paramTypes[0];
             Method getMethod = getGetMethod(pojoClass, propertyName, type);
             if (getMethod == null) {
                 noGetterBehavior.behave("Cannot find getter and setter pair for property " + propertyName, null);
@@ -184,7 +189,7 @@ public class POJOAsserter<T> {
      *            The type to randomize.
      * @return A randomly generated value of type {@code type}.
      */
-    private static <T> T getRandomValue(Random random, Class<T> type) {
+    private T getRandomValue(Random random, Class<T> type) {
         Class primitiveType = boxingToPrimitive.get(type);
         if (primitiveType != null) {
             type = primitiveType;
@@ -206,7 +211,8 @@ public class POJOAsserter<T> {
             // noinspection unchecked
             return (T) randomMethod.invoke(random);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            log.info("Can't execute random method: " + randomClass.getSimpleName() + "." + randomMethodName);
+            randomFailureBehavior.behave
+                    ("Can't execute random method: " + randomClass.getSimpleName() + "." + randomMethodName, e);
             return null;
         }
     }

@@ -14,6 +14,7 @@ public class POJOAsserterBuillder<T> {
     private T pojo;
     private Random random;
     private Behavior noGetterBehavior;
+    private Behavior randomFailureBehavior;
 
     public POJOAsserter<T> build() {
         Objects.requireNonNull(pojo, "Cannot construct a POJOAsserter without a POJO to assert");
@@ -26,7 +27,11 @@ public class POJOAsserterBuillder<T> {
             noGetterBehavior = new LoggingBehavior();
         }
 
-        return new POJOAsserter<>(pojo, random, noGetterBehavior);
+        if (randomFailureBehavior == null) {
+            randomFailureBehavior = new LoggingBehavior();
+        }
+
+        return new POJOAsserter<>(pojo, random, noGetterBehavior, randomFailureBehavior);
     }
 
     /**
@@ -61,6 +66,18 @@ public class POJOAsserterBuillder<T> {
      */
     public POJOAsserterBuillder withNoGetterBehavior(Behavior noGetterBehavior) {
         this.noGetterBehavior = noGetterBehavior;
+        return this;
+    }
+
+    /**
+     * Specify the {@link Behavior} to use when a random value cannot be generated
+     * If this method is not called, a default {@link LoggingBehavior} is used.
+     *
+     * @param randomFailureBehavior
+     *          The Behavior to use
+     */
+    public POJOAsserterBuillder withRandomFailureBehavior(Behavior randomFailureBehavior) {
+        this.randomFailureBehavior = randomFailureBehavior;
         return this;
     }
 }

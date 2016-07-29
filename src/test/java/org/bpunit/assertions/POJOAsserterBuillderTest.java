@@ -50,4 +50,13 @@ public class POJOAsserterBuillderTest {
                 new POJOAsserterBuillder<>().forPOJO(new SomeClass()).withNoGetterBehavior(FAILING_BEHAVIOR).build();
         pojoAsserter.assertProperties();
     }
+
+    @Test
+    public void testWithRandomFailureBehavior() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
+        POJOAsserter pojoAsserter =
+                new POJOAsserterBuillder<>().forPOJO(new SomeClass()).withRandomFailureBehavior(FAILING_BEHAVIOR).build();
+        pojoAsserter.assertProperties();
+    }
 }
