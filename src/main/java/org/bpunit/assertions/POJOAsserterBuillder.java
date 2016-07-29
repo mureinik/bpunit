@@ -40,7 +40,6 @@ public class POJOAsserterBuillder<T> {
      * @param random
      *          The random generator to use.
      */
-
     public POJOAsserterBuillder withRandom(Random random) {
         this.random = random;
         return this;
