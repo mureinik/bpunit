@@ -3,6 +3,7 @@ package org.bpunit.assertions;
 import org.bpunit.assertions.behaviors.Behavior;
 import org.bpunit.examples.ObjectRandom;
 import org.bpunit.examples.SomeClass;
+import org.bpunit.examples.SomeClassWithThrowingSetter;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -57,6 +58,16 @@ public class POJOAsserterBuillderTest {
         expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
         POJOAsserter pojoAsserter =
                 new POJOAsserterBuillder<>().forPOJO(new SomeClass()).withRandomFailureBehavior(FAILING_BEHAVIOR).build();
+        pojoAsserter.assertProperties();
+    }
+
+    @Test
+    public void testWithPropertyTestFailureBehavior() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
+        POJOAsserter pojoAsserter =
+                new POJOAsserterBuillder<>().forPOJO(new SomeClassWithThrowingSetter())
+                        .withPropertyTestFailureBehavior(FAILING_BEHAVIOR).build();
         pojoAsserter.assertProperties();
     }
 }

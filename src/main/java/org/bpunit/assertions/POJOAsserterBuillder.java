@@ -1,6 +1,7 @@
 package org.bpunit.assertions;
 
 import org.bpunit.assertions.behaviors.Behavior;
+import org.bpunit.assertions.behaviors.FailureBehavior;
 import org.bpunit.assertions.behaviors.LoggingBehavior;
 import org.bpunit.utils.SeedableRandom;
 
@@ -15,6 +16,7 @@ public class POJOAsserterBuillder<T> {
     private Random random;
     private Behavior noGetterBehavior;
     private Behavior randomFailureBehavior;
+    private Behavior propertyTestFailureBehavior;
 
     public POJOAsserter<T> build() {
         Objects.requireNonNull(pojo, "Cannot construct a POJOAsserter without a POJO to assert");
@@ -31,7 +33,11 @@ public class POJOAsserterBuillder<T> {
             randomFailureBehavior = new LoggingBehavior();
         }
 
-        return new POJOAsserter<>(pojo, random, noGetterBehavior, randomFailureBehavior);
+        if (propertyTestFailureBehavior == null) {
+            propertyTestFailureBehavior = new FailureBehavior();
+        }
+
+        return new POJOAsserter<>(pojo, random, noGetterBehavior, randomFailureBehavior, propertyTestFailureBehavior);
     }
 
     /**
@@ -78,6 +84,19 @@ public class POJOAsserterBuillder<T> {
      */
     public POJOAsserterBuillder withRandomFailureBehavior(Behavior randomFailureBehavior) {
         this.randomFailureBehavior = randomFailureBehavior;
+        return this;
+    }
+
+    /**
+     * Specify the {@link Behavior} to use when a testing a property setter and getter pair fails (e.g., if the getter
+     * throws an exception).
+     * If this method is not called, a default {@link FailureBehavior} is used.
+     *
+     * @param propertyTestFailureBehavior
+     *          The Behavior to use
+     */
+    public POJOAsserterBuillder withPropertyTestFailureBehavior(Behavior propertyTestFailureBehavior) {
+        this.propertyTestFailureBehavior = propertyTestFailureBehavior;
         return this;
     }
 }

@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 /**
  * A utility class for asserting that boilerplate getters and setters work properly.
@@ -66,6 +65,9 @@ public class POJOAsserter<T> {
     /** The behavior for a random value generation failure */
     private Behavior randomFailureBehavior;
 
+    /** The behavior for when a property can't be tested */
+    private Behavior propertyTestFailureBehavior;
+
 
     /* Constructors */
 
@@ -78,12 +80,15 @@ public class POJOAsserter<T> {
      *            The {@link Behavior} to perform when a property doesn't have a setter
      * @param randomFailureBehavior
      *            The {@link Behavior} to perform when a random value can't be generated
+     * @param propertyTestFailureBehavior
+     *            The {@link Behavior} to perform when a property can't be tested
      */
-    POJOAsserter(T pojo, Random random, Behavior noGetterBehavior, Behavior randomFailureBehavior) {
+    POJOAsserter(T pojo, Random random, Behavior noGetterBehavior, Behavior randomFailureBehavior, Behavior propertyTestFailureBehavior) {
         this.pojo = pojo;
         this.random = random;
         this.noGetterBehavior = noGetterBehavior;
         this.randomFailureBehavior = randomFailureBehavior;
+        this.propertyTestFailureBehavior = propertyTestFailureBehavior;
     }
 
 
@@ -130,7 +135,7 @@ public class POJOAsserter<T> {
                 Object returnedValue = getMethod.invoke(pojo);
                 assertEquals("Wrong value for property " + propertyName, randomValue, returnedValue);
             } catch (IllegalAccessException | InvocationTargetException e) {
-                fail("Can't test property " + propertyName + " due to exception: " + e);
+                propertyTestFailureBehavior.behave("Can't test property " + propertyName, e);
             }
         }
     }
