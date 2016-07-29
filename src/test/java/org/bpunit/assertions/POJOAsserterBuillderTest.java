@@ -43,7 +43,7 @@ public class POJOAsserterBuillderTest {
     }
 
     @Test
-    public void testWithBehavior() {
+    public void testWithNoGetterBehavior() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
         POJOAsserter pojoAsserter =
