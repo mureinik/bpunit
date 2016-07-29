@@ -45,6 +45,6 @@ public class AssertUtils {
      *            returns an instance of {@code XYZ} for each type of property {@code o} has.
      */
     public static void testProperties(Object o, Random random) {
-        new POJOAsserter<>(o, random).assertProperties();
+        new POJOAsserterBuillder<>().forPOJO(o).withRandom(random).build().assertProperties();
     }
 }
