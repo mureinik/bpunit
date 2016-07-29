@@ -284,6 +284,20 @@ public class SeedableRandom extends Random {
         return new Date(nextLong());
     }
 
+    /**
+     * Randomize a {@link Date} value between the epoch (inclusive) and the specified value (exclusive).
+     */
+    public Date nextDate(Date d) {
+        return new Date(nextLong(d.getTime()));
+    }
+
+    /**
+     * Randomize a {@link Date} value in the given range [min, max].
+     */
+    public Date nextDate(Date min, Date max) {
+        return new Date(nextLong(min.getTime(), max.getTime()));
+    }
+
     /* --- Collections-related Methods --- */
 
     /**

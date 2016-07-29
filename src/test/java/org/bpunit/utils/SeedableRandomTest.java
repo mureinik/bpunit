@@ -246,6 +246,35 @@ public class SeedableRandomTest {
     }
 
     @Test
+    public void nextDateMax() {
+        Date max = new Date(60335532000000L);
+        Date d = random.nextDate(max);
+        assertTrue(d.compareTo(max) < 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextDateNegativeMax() {
+        Date d = random.nextDate(new Date(-1L));
+    }
+
+    @Test
+    public void nextDateMinMax() {
+        Date min = new Date(60335532000000L);
+        Date max = new Date(61312543200000L);
+        Date d = random.nextDate(min, max);
+        assertTrue(d.compareTo(max) < 0);
+        assertTrue(d.compareTo(min) >= 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nextDateMinMaxMinLargerThanMax() {
+        Date badMax = new Date(60335532000000L);
+        Date badMin = new Date(61312543200000L);
+        Date d = random.nextDate(badMin, badMax);
+
+    }
+
+    @Test
     public void pickRandomArray() {
         Integer[] arr = {random.nextInt(), random.nextInt(), random.nextInt()};
         Integer picked = random.pickRandom(arr);
