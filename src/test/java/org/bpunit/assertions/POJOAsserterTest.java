@@ -1,5 +1,6 @@
 package org.bpunit.assertions;
 
+import org.bpunit.assertions.behaviors.LoggingBehavior;
 import org.bpunit.examples.ObjectRandom;
 import org.bpunit.examples.SomeClass;
 import org.bpunit.examples.SomeClassWithThrowingSetter;
@@ -33,7 +34,7 @@ public class POJOAsserterTest {
 
     private static void assentSimpleClass(Random random, boolean canRandomizeObject) {
         SomeClass sc = new SomeClass();
-        new POJOAsserter<>(sc, random).assertProperties();
+        new POJOAsserter<>(sc, random, new LoggingBehavior()).assertProperties();
 
         // Make sure all properties were addressed
         assertNotNull("myInt not checked", sc.getMyInt());

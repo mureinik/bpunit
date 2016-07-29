@@ -1,5 +1,6 @@
 package org.bpunit.assertions;
 
+import org.bpunit.assertions.behaviors.Behavior;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,15 +58,23 @@ public class POJOAsserter<T> {
     private Random random;
 
 
+    /* Behaviors */
+
+    /** The behavior for when a setter cannot be found for a property */
+    private Behavior noGetterBehavior;
+
+
     /* Constructors */
 
     /**
      * @param pojo The POJO to be tested
      * @param random A random data source
+     * @param noGetterBehavior The {@link Behavior} to perform when a property doesn't have a setter
      */
-    POJOAsserter(T pojo, Random random) {
+    POJOAsserter(T pojo, Random random, Behavior noGetterBehavior) {
         this.pojo = pojo;
         this.random = random;
+        this.noGetterBehavior = noGetterBehavior;
     }
 
 
@@ -98,7 +107,7 @@ public class POJOAsserter<T> {
             Class<?> type = paramTypes[0];
             Method getMethod = getGetMethod(pojoClass, propertyName, type);
             if (getMethod == null) {
-                log.info("Cannot find getter and setter pair for property " + propertyName);
+                noGetterBehavior.behave("Cannot find getter and setter pair for property " + propertyName);
                 continue;
             }
 

@@ -1,5 +1,7 @@
 package org.bpunit.assertions;
 
+import org.bpunit.assertions.behaviors.Behavior;
+import org.bpunit.assertions.behaviors.LoggingBehavior;
 import org.bpunit.utils.SeedableRandom;
 
 import java.util.Objects;
@@ -11,6 +13,7 @@ import java.util.Random;
 public class POJOAsserterBuillder<T> {
     private T pojo;
     private Random random;
+    private Behavior noGetterBehavior;
 
     public POJOAsserter<T> build() {
         Objects.requireNonNull(pojo, "Cannot construct a POJOAsserter without a POJO to assert");
@@ -19,7 +22,11 @@ public class POJOAsserterBuillder<T> {
             random = new SeedableRandom();
         }
 
-        return new POJOAsserter<>(pojo, random);
+        if (noGetterBehavior == null) {
+            noGetterBehavior = new LoggingBehavior();
+        }
+
+        return new POJOAsserter<>(pojo, random, noGetterBehavior);
     }
 
     /**
@@ -42,6 +49,18 @@ public class POJOAsserterBuillder<T> {
      */
     public POJOAsserterBuillder withRandom(Random random) {
         this.random = random;
+        return this;
+    }
+
+    /**
+     * Specify the {@link Behavior} to use when a property doesn't have a pair of getter and setter.
+     * If this method is not called, a default {@link LoggingBehavior} is used.
+     *
+     * @param noGetterBehavior
+     *          The Behavior to use
+     */
+    public POJOAsserterBuillder withNoGetterBehavior(Behavior noGetterBehavior) {
+        this.noGetterBehavior = noGetterBehavior;
         return this;
     }
 }
