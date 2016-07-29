@@ -61,6 +61,7 @@ public class POJOAsserter<T> {
         this.pojo = pojo;
         this.random = random;
     }
+
     /**
      * Tests that the {@code getXYZ()} and {@code setXYZ(SomeType XYZ)} methods of {@link #pojo} are symmetric. I.e.,
      * if {@code setXYZ} is called with some randomly generated value, the subsequent {@code getXYZ} call will return
