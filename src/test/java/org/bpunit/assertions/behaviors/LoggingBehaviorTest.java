@@ -11,6 +11,6 @@ public class LoggingBehaviorTest {
     @Test
     public void behave() {
         Behavior behavior = new LoggingBehavior();
-        behavior.behave("message");
+        behavior.behave("message", null);
     }
 }

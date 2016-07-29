@@ -107,7 +107,7 @@ public class POJOAsserter<T> {
             Class<?> type = paramTypes[0];
             Method getMethod = getGetMethod(pojoClass, propertyName, type);
             if (getMethod == null) {
-                noGetterBehavior.behave("Cannot find getter and setter pair for property " + propertyName);
+                noGetterBehavior.behave("Cannot find getter and setter pair for property " + propertyName, null);
                 continue;
             }
 

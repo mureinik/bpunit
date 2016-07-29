@@ -5,7 +5,7 @@ package org.bpunit.assertions.behaviors;
  */
 public class ThrowingBehavior implements Behavior {
     @Override
-    public void behave(String message) {
-        throw new IllegalArgumentException(message);
+    public void behave(String message , Throwable t) {
+        throw new IllegalArgumentException(message, t);
     }
 }

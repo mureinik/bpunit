@@ -11,7 +11,7 @@ public class LoggingBehavior implements Behavior {
     private static final Logger log = LoggerFactory.getLogger(LoggingBehavior.class);
 
     @Override
-    public void behave(String message) {
-        log.info(message);
+    public void behave(String message, Throwable t) {
+        log.info(message, t);
     }
 }
