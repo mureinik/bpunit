@@ -52,6 +52,8 @@ public class POJOAsserter<T> {
 
     /** The POJO instance under test */
     private T pojo;
+
+    /* A randomizer for the POJO's properties */
     private Random random;
 
 
