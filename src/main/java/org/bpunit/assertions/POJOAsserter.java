@@ -70,10 +70,14 @@ public class POJOAsserter<T> {
     /* Constructors */
 
     /**
-     * @param pojo The POJO to be tested
-     * @param random A random data source
-     * @param noGetterBehavior The {@link Behavior} to perform when a property doesn't have a setter
-     * @param randomFailureBehavior The {@link Behavior} to perform when a random value can't be generated
+     * @param pojo
+     *            The POJO to be tested
+     * @param random
+     *            A random data source
+     * @param noGetterBehavior
+     *            The {@link Behavior} to perform when a property doesn't have a setter
+     * @param randomFailureBehavior
+     *            The {@link Behavior} to perform when a random value can't be generated
      */
     POJOAsserter(T pojo, Random random, Behavior noGetterBehavior, Behavior randomFailureBehavior) {
         this.pojo = pojo;
