@@ -57,6 +57,10 @@ public class POJOAsserter<T> {
 
     /* Constructors */
 
+    /**
+     * @param pojo The POJO to be tested
+     * @param random A random data source
+     */
     POJOAsserter(T pojo, Random random) {
         this.pojo = pojo;
         this.random = random;
