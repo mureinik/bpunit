@@ -8,9 +8,9 @@ import org.junit.rules.ExpectedException;
 import static org.hamcrest.CoreMatchers.startsWith;
 
 /**
- * A test case for the {@link FailureBehaviorTest} class.
+ * A test case for the {@link FailingBehaviorTest} class.
  */
-public class FailureBehaviorTest {
+public class FailingBehaviorTest {
     private static final String MESSAGE = "A message in a bottle";
 
     @Rule
@@ -21,7 +21,7 @@ public class FailureBehaviorTest {
     @Before
     public void setUp() {
         expectedException.expect(AssertionError.class);
-        behavior = new FailureBehavior();
+        behavior = new FailingBehavior();
     }
 
     @Test

@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 /**
  * A {@link Behavior} that fails the test.
  */
-public class FailureBehavior implements Behavior {
+public class FailingBehavior implements Behavior {
     @Override
     public void behave(String message, Throwable t) {
         if (t != null) {

@@ -1,7 +1,7 @@
 package org.bpunit.assertions;
 
 import org.bpunit.assertions.behaviors.Behavior;
-import org.bpunit.assertions.behaviors.FailureBehavior;
+import org.bpunit.assertions.behaviors.FailingBehavior;
 import org.bpunit.assertions.behaviors.LoggingBehavior;
 import org.bpunit.utils.SeedableRandom;
 
@@ -34,7 +34,7 @@ public class POJOAsserterBuillder<T> {
         }
 
         if (propertyTestFailureBehavior == null) {
-            propertyTestFailureBehavior = new FailureBehavior();
+            propertyTestFailureBehavior = new FailingBehavior();
         }
 
         return new POJOAsserter<>(pojo, random, noGetterBehavior, randomFailureBehavior, propertyTestFailureBehavior);
@@ -90,7 +90,7 @@ public class POJOAsserterBuillder<T> {
     /**
      * Specify the {@link Behavior} to use when a testing a property setter and getter pair fails (e.g., if the getter
      * throws an exception).
-     * If this method is not called, a default {@link FailureBehavior} is used.
+     * If this method is not called, a default {@link FailingBehavior} is used.
      *
      * @param propertyTestFailureBehavior
      *          The Behavior to use

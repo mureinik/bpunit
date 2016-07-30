@@ -1,6 +1,6 @@
 package org.bpunit.assertions;
 
-import org.bpunit.assertions.behaviors.FailureBehavior;
+import org.bpunit.assertions.behaviors.FailingBehavior;
 import org.bpunit.assertions.behaviors.LoggingBehavior;
 import org.bpunit.examples.ObjectRandom;
 import org.bpunit.examples.SomeClass;
@@ -35,7 +35,7 @@ public class POJOAsserterTest {
 
     private static void assentSimpleClass(Random random, boolean canRandomizeObject) {
         SomeClass sc = new SomeClass();
-        new POJOAsserter<>(sc, random, new LoggingBehavior(), new LoggingBehavior(), new FailureBehavior())
+        new POJOAsserter<>(sc, random, new LoggingBehavior(), new LoggingBehavior(), new FailingBehavior())
                 .assertProperties();
 
         // Make sure all properties were addressed
