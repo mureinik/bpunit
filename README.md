@@ -58,7 +58,10 @@ methods. Currently, there are three behaviors that can be configured:
 
 E.g.:
 
-     new POJOAsserterBuilder().forPOJO(myObject).withNoGetterBahvior(new FailureBehavior()).build().assertProperties();
+     new POJOAsserterBuilder().forPOJO(myObject)
+                              .withNoGetterBahvior(new FailureBehavior())
+                              .build()
+                              .assertProperties();
 
 
 #### Built-in `Behavior`s
