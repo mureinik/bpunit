@@ -20,21 +20,63 @@ even these boring parts of the code as pain free as possible.
 
 ### Using BPUnit
 
-#### The Basics: `AssertUtils`
+#### The Basics: `POJOAsserter` and `POJOAsserterBuilder`
 
-Calling `AssertUtils.testProperties(Object)` is the most basic way to use
-BPUnit. It will iterate over all of the object's parameters, `set` each one
+The `POJOAsserter` class does exactly what its name says - it asserts a POJO. 
+Well, its properties, at least.
+`POJOAsserters` aren't created directly, they are built with a 
+`POJOAsserterBuilder`, unsurprisingly. The basic flow, detailed below, 
+will iterate over all of the object's properties, `set` each one
 with a random value, `get` it back, and compare the two.  If any of these
-properties don't match, the test will fail. Missing properties will generate an
-info log, but will not fail the test.
+values don't match, the test will fail:
 
-#### The Basics: Using a different `Random`
+    new POJOAsserterBuilder().forPOJO(myObject).build().assertProperties();
+
+#### Changing behavior with `POJOAsserterBuilder`
+
+`POJOAsserterBuilder` is a fluent API to create `POJOAsserter` instances. 
+It strives to assume as little as possible about the assertion behavior you'd
+want by allowing you to configure the `POJOAsserter` with a series of `withXYZ`
+methods. Currently, there are three behaviors that can be configured:
+
+  1. Handling a situation where your POJO class has a setter method such as
+     `setSomething(SomeClass)`, but does not have a corresponding getter
+     (`getSomething()`, in this example). 
+     This behavior can be influced by using the `withNoGetterBehavior(Behavior)`
+     method.
+     If not explicitly configured, the default behavior is to log such incidents,
+     and continue the test.
+  2. Handling a situation where you cannot test a getter/setter pair (e.g., the 
+     getter throws an exception).
+     This behavior can be influced by using the 
+     `withPropertyTestFailureBehavior(Behavior)` method.
+     If not explicitly configured, the default behavior is to fail the test.
+  3. Handling a situation where your `Radnom` generator can't generate a random
+     value for one of your POJO's properties (e.g., it doesn't have the right method).
+     If not explicitly configured, the default behavior is to log such incidents,
+     and continue the test.
+
+E.g.:
+
+     new POJOAsserterBuilder().forPOJO(myObject).withNoGetterBahvior(new FailureBehavior()).build().assertProperties();
+
+
+#### Built-in `Behavior`s
+
+BPUnit provides several simple built-in behaviors to use with `POJOAsserterBuilder`:
+
+  1. `LoggingBehavior` - logs a message and continues the assertion flow.
+  2. `FailingBehavior` - fails the assertion flow.
+  3. `ThrowingBehavior` - throws an `IllegalArguemntException` 
+
+ 
+#### Using a different `Random`
 
 While [`java.util.Random`](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
 is a neat little randomizer, it has several drawbacks. First and foremost, it 
 can only randomize a small subset of the JDK's types, wheres the classes you'd
 want to test usually have properties from your own classes.
-`AssertUtils.testProperties(Object, Random)` allows you extend
+`POJOAssertBuilder#withRadnom(Random)` allows you extend
 `java.util.Random` and provide methods to randomize your own classes. A
 randomizer for `MyClass` is a method with the following properties:
   
@@ -42,6 +84,12 @@ randomizer for `MyClass` is a method with the following properties:
   2. Its return type is `MyClass`.  
   3. Its called `nextMyClass`.  
   4. It doesn't have any arguments.
+
+These new extensions of `Random` can be used with a `POJOAsserter` by calling
+the `withRandom` method when building it. If not explicitly specified, the
+`SeedableRandom` class described below is used.
+
+     new POJOAsserterBuilder().forPOJO(myObject).withRandom(new MyRandom()).build().assertProperties();
 
 #### The Basics: Reproducible tests
 
