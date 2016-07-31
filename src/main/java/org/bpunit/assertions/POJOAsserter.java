@@ -199,12 +199,14 @@ public class POJOAsserter<T> {
      * @return A randomly generated value of type {@code type}.
      */
     private T getRandomValue(Random random, Class<T> type) {
-        Class primitiveType = boxingToPrimitive.get(type);
-        if (primitiveType != null) {
-            type = primitiveType;
+        Class typeToGenerate;
+        if (boxingToPrimitive.containsKey(type)) {
+            typeToGenerate = boxingToPrimitive.get(type);
+        } else {
+            typeToGenerate = type;
         }
-        String typeName = type.getSimpleName();
-        if (type.isPrimitive()) {
+        String typeName = typeToGenerate.getSimpleName();
+        if (typeToGenerate.isPrimitive()) {
             typeName = capitalizeFirst(typeName);
         }
         String randomMethodName = RANDOM_PREFIX + typeName;
@@ -213,7 +215,7 @@ public class POJOAsserter<T> {
             Method randomMethod = randomClass.getMethod(randomMethodName);
             Class<?> returnType = randomMethod.getReturnType();
             if (randomMethod.getParameterTypes().length != 0 ||
-                    (!returnType.equals(type) && !type.equals(primitiveToBoxing.get(returnType)))) {
+                    (!returnType.equals(typeToGenerate) && !typeToGenerate.equals(primitiveToBoxing.get(returnType)))) {
                 throw new NoSuchMethodException();
             }
 
