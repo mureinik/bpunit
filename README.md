@@ -142,4 +142,4 @@ empty and some were introduced:
       earlier.
 
 ### Continuous Integration
-[![Build Status](https://travis-ci.org/mureinik/bpunit.svg?branch=master)](https://travis-ci.org/mureinik/bpunit) [![Coverage Status](https://coveralls.io/repos/github/mureinik/bpunit/badge.svg?branch=master)](https://coveralls.io/github/mureinik/bpunit?branch=master)
+[![Build Status](https://travis-ci.org/mureinik/bpunit.svg?branch=master)](https://travis-ci.org/mureinik/bpunit) [![Coverage Status](https://coveralls.io/repos/github/mureinik/bpunit/badge.svg?branch=master)](https://coveralls.io/github/mureinik/bpunit?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c40eb7ecea6e4d5aa482f61849c34ad5)](https://www.codacy.com/app/mureinik/bpunit?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mureinik/bpunit&amp;utm_campaign=Badge_Grade)
