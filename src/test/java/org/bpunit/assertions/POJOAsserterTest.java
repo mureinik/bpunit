@@ -35,7 +35,7 @@ public class POJOAsserterTest {
 
     private static void assentSimpleClass(Random random, boolean canRandomizeObject) {
         SomeClass sc = new SomeClass();
-        new POJOAsserter<>(sc, random, new LoggingBehavior(), new LoggingBehavior(), new FailingBehavior())
+        new POJOAsserter<>(sc, random, new LoggingBehavior(true), new LoggingBehavior(true), new FailingBehavior())
                 .assertProperties();
 
         // Make sure all properties were addressed

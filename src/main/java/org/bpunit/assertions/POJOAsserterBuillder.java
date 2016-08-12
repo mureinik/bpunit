@@ -26,11 +26,11 @@ public class POJOAsserterBuillder<T> {
         }
 
         if (noGetterBehavior == null) {
-            noGetterBehavior = new LoggingBehavior();
+            noGetterBehavior = new LoggingBehavior(true);
         }
 
         if (randomFailureBehavior == null) {
-            randomFailureBehavior = new LoggingBehavior();
+            randomFailureBehavior = new LoggingBehavior(true);
         }
 
         if (propertyTestFailureBehavior == null) {
