@@ -9,8 +9,21 @@ import org.junit.Test;
  */
 public class LoggingBehaviorTest {
     @Test
-    public void behave() {
+    public void behaveDefault() {
         Behavior behavior = new LoggingBehavior();
+        behavior.behave("message", null);
+    }
+
+    @Test
+    public void behaveNoStackTrace() {
+        Behavior behavior = new LoggingBehavior(false);
+        behavior.behave("message", null);
+    }
+
+
+    @Test
+    public void behaveWithStackTrace() {
+        Behavior behavior = new LoggingBehavior(true);
         behavior.behave("message", null);
     }
 }

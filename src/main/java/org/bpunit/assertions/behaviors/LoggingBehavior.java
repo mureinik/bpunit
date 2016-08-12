@@ -10,8 +10,22 @@ public class LoggingBehavior implements Behavior {
 
     private static final Logger log = LoggerFactory.getLogger(LoggingBehavior.class);
 
+    private boolean showStackTrace;
+
+    public LoggingBehavior() {
+        this(true);
+    }
+
+    public LoggingBehavior(boolean showStackTrace) {
+        this.showStackTrace = showStackTrace;
+    }
+
     @Override
     public void behave(String message, Throwable t) {
-        log.info(message, t);
+        if (showStackTrace) {
+            log.info(message, t);
+        } else {
+            log.info(message);
+        }
     }
 }
