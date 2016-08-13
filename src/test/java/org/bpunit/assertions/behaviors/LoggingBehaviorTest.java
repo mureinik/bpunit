@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * A basic test case for the {@link LoggingBehavior} class.
  * At this point, it just tests the behavior does not fail.
- * If in the future some mocking mechanism is introduced to the poject, this test should be expanded
+ * If in the future some mocking mechanism is introduced to the project, this test should be expanded
  */
 public class LoggingBehaviorTest {
     @Test
