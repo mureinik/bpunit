@@ -12,7 +12,7 @@ tests.
 
   Alleh, N. (2004).
 
-All to often you encounter a situation where some piece of the code was
+All too often you encounter a situation where some piece of the code was
 not tested because "it's too simple to break", or "it's not worth the
 effort". More often than not, these are the places that contain the
 bugs.
