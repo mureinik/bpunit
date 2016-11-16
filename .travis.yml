@@ -1,8 +1,8 @@
 language: java
 jdk:
   - openjdk7
-  - oraclejdk8
   - oraclejdk7
+  - oraclejdk8
 
 after_success:
   - mvn clean findbugs:check cobertura:cobertura coveralls:report
