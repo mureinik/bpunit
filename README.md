@@ -152,6 +152,10 @@ list completely empty and some were introduced:
      would be binary compatible with any slf4j binary from the 1.7.x
      generation, if not earlier.
 
+### License
+BPUnit is licensed under the LGPL-3 license. See
+[LICENSE.md](LICENSE.md) for additional details. 
+
 ### Continuous Integration
 [![Build Status](https://travis-ci.org/mureinik/bpunit.svg?branch=master)](https://travis-ci.org/mureinik/bpunit)
 [![Coverage Status](https://coveralls.io/repos/github/mureinik/bpunit/badge.svg?branch=master)](https://coveralls.io/github/mureinik/bpunit?branch=master)
