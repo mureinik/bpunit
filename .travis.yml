@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 
 after_success:
-  - mvn clean findbugs:check cobertura:cobertura coveralls:report
+  - mvn clean findbugs:check jacoco:report coveralls:report
 
 env:
   global:
