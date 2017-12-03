@@ -200,11 +200,7 @@ public class POJOAsserter<T> {
      */
     private T getRandomValue(Random random, Class<T> type) {
         Class typeToGenerate;
-        if (boxingToPrimitive.containsKey(type)) {
-            typeToGenerate = boxingToPrimitive.get(type);
-        } else {
-            typeToGenerate = type;
-        }
+        typeToGenerate = boxingToPrimitive.getOrDefault(type, type);
         String typeName = typeToGenerate.getSimpleName();
         if (typeToGenerate.isPrimitive()) {
             typeName = capitalizeFirst(typeName);
