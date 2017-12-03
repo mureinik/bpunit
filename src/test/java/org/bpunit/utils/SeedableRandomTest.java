@@ -1,16 +1,17 @@
 package org.bpunit.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * A test class for the {@link SeedableRandom} class. It does not test the random distribution of the various methods,
@@ -28,7 +29,7 @@ public class SeedableRandomTest {
         ONE, TWO, THREE
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         random = new SeedableRandom();
     }
@@ -58,9 +59,9 @@ public class SeedableRandomTest {
         assertTrue(b >= (byte) 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextByteNegativeMax() {
-        byte b = random.nextByte((byte) -1);
+        assertThrows(IllegalArgumentException.class, () -> random.nextByte((byte) -1));
     }
 
     @Test
@@ -70,9 +71,9 @@ public class SeedableRandomTest {
         assertTrue(b >= (byte) 2);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextByteMinMaxMinLargerThanMax() {
-        byte b = random.nextByte((byte) 4, (byte) 2);
+        assertThrows(IllegalArgumentException.class, () -> random.nextByte((byte) 4, (byte) 2));
     }
 
     @Test
@@ -94,9 +95,9 @@ public class SeedableRandomTest {
         assertTrue(c >= 'a');
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextCharMinMaxMinLargerThanMax() {
-        char c = random.nextChar('c', 'a');
+        assertThrows(IllegalArgumentException.class, () -> random.nextChar('c', 'a'));
     }
 
     @Test
@@ -110,9 +111,9 @@ public class SeedableRandomTest {
         assertTrue(s < (short) 200);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextShortNegativeMax() {
-        short s = random.nextShort((short) -1);
+        assertThrows(IllegalArgumentException.class, () -> random.nextShort((short) -1));
     }
 
     @Test
@@ -123,9 +124,9 @@ public class SeedableRandomTest {
     }
 
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextShortMinMaxMinLargerThanMax() {
-        short s = random.nextShort((short) 200, (short) 100);
+        assertThrows(IllegalArgumentException.class, () -> random.nextShort((short) 200, (short) 100));
     }
 
     @Test
@@ -139,9 +140,9 @@ public class SeedableRandomTest {
         assertTrue(i < 1000);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextIntNegativeMax() {
-        int i = random.nextInt(-1);
+        assertThrows(IllegalArgumentException.class, () -> random.nextInt(-1));
     }
 
     @Test
@@ -151,9 +152,9 @@ public class SeedableRandomTest {
         assertTrue(i >= 100);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextIntMinMaxMinLargerThanMax() {
-        int i = random.nextInt(1000, 100);
+        assertThrows(IllegalArgumentException.class, () -> random.nextInt(1000, 100));
     }
 
     @Test
@@ -167,9 +168,9 @@ public class SeedableRandomTest {
         assertTrue(l < 15000L);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextLongNegativeMax() {
-        long l= random.nextLong(-1L);
+        assertThrows(IllegalArgumentException.class, () -> random.nextLong(-1L));
     }
 
     @Test
@@ -179,9 +180,9 @@ public class SeedableRandomTest {
         assertTrue(l >= 12000L);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextLongMinMaxMinLargerThanMax() {
-        long l = random.nextLong(1500L, 1200L);
+        assertThrows(IllegalArgumentException.class, () -> random.nextLong(1500L, 1200L));
     }
 
     @Test
@@ -195,9 +196,9 @@ public class SeedableRandomTest {
         assertTrue(f < 5.0f);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextFloatNegativeMax() {
-        float f = random.nextFloat(-1.0F);
+        assertThrows(IllegalArgumentException.class, () -> random.nextFloat(-1.0F));
     }
 
     @Test
@@ -207,9 +208,9 @@ public class SeedableRandomTest {
         assertTrue(f >= 2.0f);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextFloatMinMaxMinLargerThanMax() {
-        float f = random.nextFloat(5.0f, 2.0f);
+        assertThrows(IllegalArgumentException.class, () -> random.nextFloat(5.0f, 2.0f));
     }
 
     @Test
@@ -223,9 +224,9 @@ public class SeedableRandomTest {
         assertTrue(d < 5.0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextDoubleNegativeMax() {
-        double d = random.nextDouble(-1.0);
+        assertThrows(IllegalArgumentException.class, () -> random.nextDouble(-1.0));
     }
 
     @Test
@@ -235,9 +236,9 @@ public class SeedableRandomTest {
         assertTrue(d >= 2.0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextDoubleMinMaxMinLargerThanMax() {
-        double d = random.nextDouble(5.0, 2.0);
+        assertThrows(IllegalArgumentException.class, () -> random.nextDouble(5.0, 2.0));
     }
 
     @Test
@@ -252,9 +253,9 @@ public class SeedableRandomTest {
         assertTrue(d.compareTo(max) < 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextDateNegativeMax() {
-        Date d = random.nextDate(new Date(-1L));
+        assertThrows(IllegalArgumentException.class, () -> random.nextDate(new Date(-1L)));
     }
 
     @Test
@@ -266,11 +267,11 @@ public class SeedableRandomTest {
         assertTrue(d.compareTo(min) >= 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextDateMinMaxMinLargerThanMax() {
         Date badMax = new Date(60335532000000L);
         Date badMin = new Date(61312543200000L);
-        Date d = random.nextDate(badMin, badMax);
+        assertThrows(IllegalArgumentException.class, () -> random.nextDate(badMin, badMax));
 
     }
 
@@ -323,9 +324,9 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextStringNegativeLength() {
-        String s = random.nextString(-5);
+        assertThrows(IllegalArgumentException.class, () -> random.nextString(-5));
     }
 
     @Test
@@ -346,20 +347,20 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextStringNegativeLengthChars() {
         char[] chars = {random.nextChar(), random.nextChar(), random.nextChar()};
-        String s = random.nextString(-5, chars);
+        assertThrows(IllegalArgumentException.class, () -> random.nextString(-5, chars));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextStringNullChars() {
-        String s = random.nextString(15, null);
+        assertThrows(IllegalArgumentException.class, () -> random.nextString(15, null));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextStringEmptyChars() {
-        String s = random.nextString(15, new char[0]);
+        assertThrows(IllegalArgumentException.class, () -> random.nextString(15, new char[0]));
     }
 
     @Test
@@ -382,9 +383,9 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextStringNegativeLengthPrintable() {
-        String s = random.nextString(-5, true);
+        assertThrows(IllegalArgumentException.class, () -> random.nextString(-5, true));
     }
 
     @Test
@@ -399,9 +400,9 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextStringNegativeLengthNotPrintable() {
-        String s = random.nextString(-5, false);
+        assertThrows(IllegalArgumentException.class, () -> random.nextString(-5, false));
     }
 
     @Test
@@ -446,14 +447,14 @@ public class SeedableRandomTest {
         assertNumeric(s);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextNumericStringZeroLength() {
-        String s = random.nextNumericString(0);
+        assertThrows(IllegalArgumentException.class, () -> random.nextNumericString(0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextNumericStringNegaticeLength() {
-        String s = random.nextNumericString(-5);
+        assertThrows(IllegalArgumentException.class, () -> random.nextNumericString(-5));
     }
 
     private static void assertNumeric(String s) {
@@ -478,8 +479,8 @@ public class SeedableRandomTest {
         assertEquals(0, s.length());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void nextPropertyStringNegativeLength() {
-        String s = random.nextPropertyString(-5);
+        assertThrows(IllegalArgumentException.class, () -> random.nextPropertyString(-5));
     }
 }

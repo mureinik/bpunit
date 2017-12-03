@@ -1,18 +1,20 @@
 package org.bpunit.assertions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.bpunit.assertions.behaviors.FailingBehavior;
 import org.bpunit.assertions.behaviors.LoggingBehavior;
 import org.bpunit.examples.ObjectRandom;
 import org.bpunit.examples.SomeClass;
 import org.bpunit.examples.SomeClassWithThrowingSetter;
 import org.bpunit.utils.SeedableRandom;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import java.util.Random;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * A test case for the {@link POJOAsserter}.
@@ -28,9 +30,9 @@ public class POJOAsserterTest {
         assentSimpleClass(new ObjectRandom(), true);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void testThrowingSetter() {
-        AssertUtils.testProperties(new SomeClassWithThrowingSetter());
+        assertThrows(AssertionFailedError.class, () -> AssertUtils.testProperties(new SomeClassWithThrowingSetter()));
     }
 
     private static void assentSimpleClass(Random random, boolean canRandomizeObject) {
@@ -39,12 +41,12 @@ public class POJOAsserterTest {
                 .assertProperties();
 
         // Make sure all properties were addressed
-        assertNotNull("myInt not checked", sc.getMyInt());
-        assertNotNull("myLong not checked", sc.getMyDate());
-        assertNotNull("myString not checked", sc.getMyString());
-        assertNotNull("someBoolean not checked", sc.getSomeBoolean());
-        assertNotNull("someOtherBoolean not checked", sc.isSomeOtherBoolean());
-        assertFalse("primitiveDouble not checked", "NaN".equals(String.valueOf(sc.getMyPrimitiveDouble())));
-        assertEquals("Wrong ability to randomize Object", canRandomizeObject, sc.getMyObject() != null);
+        assertNotNull(sc.getMyInt(), "myInt not checked");
+        assertNotNull(sc.getMyDate(), "myLong not checked");
+        assertNotNull(sc.getMyString(), "myString not checked");
+        assertNotNull(sc.getSomeBoolean(), "someBoolean not checked");
+        assertNotNull(sc.isSomeOtherBoolean(), "someOtherBoolean not checked");
+        assertFalse("NaN".equals(String.valueOf(sc.getMyPrimitiveDouble())), "primitiveDouble not checked");
+        assertEquals(canRandomizeObject, sc.getMyObject() != null, "Wrong ability to randomize Object");
     }
 }

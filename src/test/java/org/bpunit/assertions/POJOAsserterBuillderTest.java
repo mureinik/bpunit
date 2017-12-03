@@ -1,20 +1,18 @@
 package org.bpunit.assertions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.bpunit.assertions.behaviors.Behavior;
 import org.bpunit.examples.ObjectRandom;
 import org.bpunit.examples.SomeClass;
 import org.bpunit.examples.SomeClassWithThrowingSetter;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
 /**
  * A test case for the {@link POJOAsserterBuillder}.
  */
 public class POJOAsserterBuillderTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
     private static final String BEHAVIOR_ERROR_MESSAGE = "Test error message for FAILING_BEHAVIOR";
 
     private static final Behavior FAILING_BEHAVIOR = (message, t) -> {
@@ -34,37 +32,33 @@ public class POJOAsserterBuillderTest {
         pojoAsserter.assertProperties();
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testWithoutPOJO() {
-        POJOAsserter pojoAsserter = new POJOAsserterBuillder<>().build();
-        pojoAsserter.assertProperties();
+        assertThrows(NullPointerException.class, () -> new POJOAsserterBuillder<>().build());
     }
 
     @Test
     public void testWithNoGetterBehavior() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
         POJOAsserter pojoAsserter =
                 new POJOAsserterBuillder<>().forPOJO(new SomeClass()).withNoGetterBehavior(FAILING_BEHAVIOR).build();
-        pojoAsserter.assertProperties();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, pojoAsserter::assertProperties);
+        assertEquals(BEHAVIOR_ERROR_MESSAGE, e.getMessage());
     }
 
     @Test
     public void testWithRandomFailureBehavior() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
         POJOAsserter pojoAsserter =
                 new POJOAsserterBuillder<>().forPOJO(new SomeClass()).withRandomFailureBehavior(FAILING_BEHAVIOR).build();
-        pojoAsserter.assertProperties();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, pojoAsserter::assertProperties);
+        assertEquals(BEHAVIOR_ERROR_MESSAGE, e.getMessage());
     }
 
     @Test
     public void testWithPropertyTestFailureBehavior() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(BEHAVIOR_ERROR_MESSAGE);
         POJOAsserter pojoAsserter =
                 new POJOAsserterBuillder<>().forPOJO(new SomeClassWithThrowingSetter())
                         .withPropertyTestFailureBehavior(FAILING_BEHAVIOR).build();
-        pojoAsserter.assertProperties();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, pojoAsserter::assertProperties);
+        assertEquals(BEHAVIOR_ERROR_MESSAGE, e.getMessage());
     }
 }

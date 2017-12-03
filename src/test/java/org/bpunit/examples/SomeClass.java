@@ -1,6 +1,6 @@
 package org.bpunit.examples;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,7 +83,7 @@ public class SomeClass {
     }
 
     public void setSomethingBad(int i, int j) {
-        Assert.fail("setSomethingBad should fail as it has two arguments");
+        Assertions.fail("setSomethingBad should fail as it has two arguments");
     }
 
     public void setWithoutGetter(int ignore) {

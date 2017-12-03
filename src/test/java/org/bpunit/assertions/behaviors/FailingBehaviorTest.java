@@ -1,11 +1,12 @@
 package org.bpunit.assertions.behaviors;
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.hamcrest.CoreMatchers.startsWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 /**
  * A test case for the {@link FailingBehaviorTest} class.
@@ -13,26 +14,22 @@ import static org.hamcrest.CoreMatchers.startsWith;
 public class FailingBehaviorTest {
     private static final String MESSAGE = "A message in a bottle";
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
     private Behavior behavior;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        expectedException.expect(AssertionError.class);
         behavior = new FailingBehavior();
     }
 
     @Test
     public void noThrowable() {
-        expectedException.expectMessage(MESSAGE);
-        behavior.behave(MESSAGE, null);
+        AssertionFailedError asf = assertThrows(AssertionFailedError.class, () -> behavior.behave(MESSAGE, null));
+        assertEquals(MESSAGE, asf.getMessage());
     }
 
     @Test
     public void withThrowable() {
-        expectedException.expectMessage(startsWith(MESSAGE));
-        behavior.behave(MESSAGE, new NullPointerException());
+        AssertionFailedError asf = assertThrows(AssertionFailedError.class, () -> behavior.behave(MESSAGE, new NullPointerException()));
+        assertTrue(asf.getMessage().startsWith(MESSAGE));
     }
 }

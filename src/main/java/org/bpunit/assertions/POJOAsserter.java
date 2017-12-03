@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * A utility class for asserting that boilerplate getters and setters work properly.
@@ -99,8 +99,8 @@ public class POJOAsserter<T> {
      * if {@code setXYZ} is called with some randomly generated value, the subsequent {@code getXYZ} call will return
      * the same value.
      *
-     * This behavior is tested by calling {@link org.junit.Assert}'s assertions, so a failure would behave just like any
-     * other JUnit test failure.
+     * This behavior is tested by calling {@link org.junit.jupiter.api.Assertions}'s assertions, so a failure would
+     * behave just like any other JUnit test failure.
      */
     public void assertProperties() {
         Class<?> pojoClass = pojo.getClass();
@@ -133,7 +133,7 @@ public class POJOAsserter<T> {
             try {
                 setMethod.invoke(pojo, randomValue);
                 Object returnedValue = getMethod.invoke(pojo);
-                assertEquals("Wrong value for property " + propertyName, randomValue, returnedValue);
+                assertEquals(randomValue, returnedValue, () -> "Wrong value for property " + propertyName);
             } catch (IllegalAccessException | InvocationTargetException e) {
                 propertyTestFailureBehavior.behave("Can't test property " + propertyName, e);
             }
