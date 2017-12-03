@@ -17,11 +17,8 @@ public class POJOAsserterBuillderTest {
 
     private static final String BEHAVIOR_ERROR_MESSAGE = "Test error message for FAILING_BEHAVIOR";
 
-    private static final Behavior FAILING_BEHAVIOR = new Behavior() {
-        @Override
-        public void behave(String message, Throwable t) {
-            throw new IllegalArgumentException(BEHAVIOR_ERROR_MESSAGE);
-        }
+    private static final Behavior FAILING_BEHAVIOR = (message, t) -> {
+        throw new IllegalArgumentException(BEHAVIOR_ERROR_MESSAGE);
     };
 
     @Test
