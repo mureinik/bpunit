@@ -129,12 +129,12 @@ anything of the sort. However, it's pretty hard to keep the dependency
 list completely empty and some were introduced:
 
   1. Obviously, as a set of utilities to helper for JUnit, BPUnit must
-     depend on it. BPUnit depends on JUnit 4.12, the latest (and last)
-     4.x release.
+     depend on it. BPUnit depends on JUnit Jupiter 5.3.2, the latest
+     JUnit release.
      JUnit does not break backwards compatibility between minor
      versions, and although BPUnit does *not* guarantee it, it strive
      to use only the the most trivial APIs JUnit provides in order to
-     be backwards compatible with older JUnit 4.x releases.
+     be backwards compatible with older JUnit 5.x releases.
 
   2. [SLF4J](http://www.slf4j.org/) is used to hide the logging
      implementation details. This is done to allow other projects using
